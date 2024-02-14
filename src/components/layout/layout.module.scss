@@ -1,0 +1,47 @@
+:global{
+    .ant-layout{
+        background-color: transparent;
+    }
+}
+
+.wrapper{
+    max-width: 1440px;
+    min-height: 100%;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    background-image: url('../../resources/img/Main_page_light.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+}
+
+.mobile{
+    width: 100%;
+    margin-left: 0;
+}
+
+.mainContent{
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    flex: 1;
+}
+
+.pageContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 24px;
+}
+
+@media screen and (max-width: 576px){
+    .pageContainer{
+        padding: 24px 16px;
+    }
+}
