@@ -1,0 +1,12 @@
+.formBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 24px 0;
+}
+
+.formButton{
+    width: 100%;
+    margin-bottom: 16px;
+}

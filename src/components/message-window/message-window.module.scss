@@ -1,0 +1,28 @@
+:global{
+    h3.ant-typography{
+        margin: 0;
+        margin-top: 24px;
+        font-weight: 500;
+        line-height: 31.2px;
+        text-align: center;
+        color: #262626;
+    }
+
+    span.ant-typography{
+        text-align: center;
+        color: #8C8C8C;
+        margin-bottom: 24px;
+    }
+
+    button.ant-btn-primary{
+        width: 100%;
+        background-color: #2F54EB;
+        border-color: #2F54EB;
+    }
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

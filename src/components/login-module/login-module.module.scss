@@ -1,0 +1,28 @@
+:global{
+    .ant-tabs-nav-list{
+        width: 100%;
+    }
+
+    .ant-tabs-tab{
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .ant-tabs-tab-btn{
+        width: 100%;
+        text-align: center;
+    }
+
+    .ant-tab-ink-bar, .ant-tab-ink-bar-animated{
+        width: 100px;
+    }
+}
+
+.wrapper{
+    width: 100%;
+}
+
+.tabs{
+    width: 100%;
+}
