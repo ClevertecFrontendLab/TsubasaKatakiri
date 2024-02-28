@@ -7,6 +7,7 @@ import logoutIcon from '../../resources/icons/Exit.svg';
 import { useWindowWidth } from '@hooks/use-window-width';
 import Sider from 'antd/lib/layout/Sider';
 import { Button, Menu } from 'antd';
+import { history } from '@redux/configure-store';
 
 interface IProps{
     isOpen: boolean,
@@ -15,6 +16,16 @@ interface IProps{
 
 const Sidebar: React.FC<IProps> = ({isOpen, handleOpening} : IProps) => {
     const isMobile = useWindowWidth();
+
+    const handleExit = () => {
+        const accessToken = localStorage.getItem('accessToken');
+        const sessionToken = sessionStorage.getItem('accessToken');
+        if(accessToken || sessionToken){
+            localStorage.removeItem('accessToken');
+            sessionStorage.removeItem('accessToken');
+            history.push('/auth');
+        }
+    }
 
     const menuItems = [
         {
@@ -58,7 +69,7 @@ const Sidebar: React.FC<IProps> = ({isOpen, handleOpening} : IProps) => {
                     <img src={isOpen ? logo : logosmall} className={classes.logo} alt="CleverFit" />
                     <Menu theme='light' items={menuItems} className={`${classes.menu} ${isMobile && classes.menuMobile}`}/>
                 </div>
-                <Button type='text' className={isOpen ? classes.logout : classes.logoutFold}>
+                <Button type='text' className={isOpen ? classes.logout : classes.logoutFold} onClick={handleExit}>
                     <img src={logoutIcon} alt="logout" />
                     {isOpen && <span>Выход</span>}
                 </Button>
