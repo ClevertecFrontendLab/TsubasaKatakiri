@@ -17,7 +17,7 @@ const SuccessChangePassword = () => {
             <MessageWindow
                 icon={<SuccessIcon/>}
                 header={'Пароль успешно изменен'}
-                message={'Теперь можно войти в аккаунт, используя свои e-mail и пароль.'}
+                message={'Теперь можно войти в аккаунт, используя\n свои e-mail и пароль.'}
                 buttonText={'Вход'}
                 buttonTestId={'change-entry-button'}
                 action={handleClick}

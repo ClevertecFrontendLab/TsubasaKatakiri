@@ -22,7 +22,7 @@ const ErrorCheckEmailNoExist = () => {
             <MessageWindow
                 icon={<Fail/>}
                 header={'Такой e-mail не зарегистрирован'}
-                message={'Мы не нашли в базе ваш e-mail. Попробуйте войти с другим e-mail.'}
+                message={'Мы не нашли в базе вашего e-mail. Попробуйте\n войти с другим e-mail.'}
                 buttonText={'Попробовать снова'}
                 buttonTestId={'check-retry-button'}
                 action={handleClick}

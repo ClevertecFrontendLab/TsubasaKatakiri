@@ -36,7 +36,7 @@ const Error:React.FC = () => {
             <MessageWindow
                 icon={<Fail/>}
                 header={'Данные не сохранились'}
-                message={'Что-то пошло не так и ваша регистрация не завершилась. Попробуйте еце раз'}
+                message={'Что-то пошло не так и ваша регистрация\n не завершилась. Попробуйте еще раз.'}
                 buttonText={'Повторить'}
                 buttonTestId={'registration-retry-button'}
                 action={handleClick}

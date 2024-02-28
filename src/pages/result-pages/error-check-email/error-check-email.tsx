@@ -36,10 +36,11 @@ const ErrorCheckEmail = () => {
             <MessageWindow
                 icon={<ErrorArt/>}
                 header={'Что-то пошло не так'}
-                message={'Произошла ошибка, попробуйте отправить форму еце раз'}
+                message={'Произошла ошибка, попробуйте отправить форму еще раз.'}
                 buttonText={'Повторить'}
                 buttonTestId={'check-back-button'}
                 action={handleClick}
+                className={classes.wrapperSpecial}
             />
         </LayoutLogin>
     );

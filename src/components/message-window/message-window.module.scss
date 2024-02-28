@@ -25,4 +25,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    padding: 0 53.5px;
 }
+
+
+@media screen and (max-width: 576px){
+    .wrapper{
+        padding: 0;
+    }
+} 

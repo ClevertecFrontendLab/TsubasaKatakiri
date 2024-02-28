@@ -41,7 +41,7 @@ const ConfirmEmail = () => {
             <div className={classes.wrapper}>
                 {errorStatus ? <Fail/> :<Info/>}
                 <Typography.Title level={3}>{errorStatus ? 'Неверный код. ' : ''}Введите код для восстановления аккаунта</Typography.Title>
-                <Typography.Text>Мы отправили вам на e-mail <b>{userEmail}</b> шестизначный код. Введите его в поле ниже.</Typography.Text>
+                <Typography.Text>Мы отправили вам на e-mail <b>{userEmail}</b> &nbsp;<br/> шестизначный код. Введите его в поле ниже.</Typography.Text>
                 <div className={classes.input}>
                     <VerificationInput
                         data-test-id='verification-input'

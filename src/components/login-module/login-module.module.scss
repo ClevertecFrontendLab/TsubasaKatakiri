@@ -21,8 +21,16 @@
 
 .wrapper{
     width: 100%;
+    padding: 0 53.5px;
 }
 
 .tabs{
     width: 100%;
 }
+
+
+@media screen and (max-width: 576px){
+    .wrapper{
+        padding: 0;
+    }
+} 
