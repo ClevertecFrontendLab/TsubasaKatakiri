@@ -7,7 +7,7 @@ import Info from '../../resources/icons/info.svg?react';
 import Fail from '../../resources/icons/fail.svg?react';
 import { Typography } from 'antd';
 import VerificationInput from 'react-verification-input';
-import { useConfirmEmailMutation } from '@redux/APISlice';
+import { useConfirmEmailMutation } from '@redux/authAPISlice';
 import { history } from '@redux/configure-store';
 import { ROUTE_PATHS } from '../../routes/route-paths';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';

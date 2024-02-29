@@ -4,7 +4,7 @@ import { Button, Form, Input } from 'antd';
 import { GooglePlusOutlined } from '@ant-design/icons';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { User } from 'src/interfaces/User';
-import { useRegisterUserMutation } from '@redux/APISlice';
+import { useRegisterUserMutation } from '@redux/authAPISlice';
 import { history } from '@redux/configure-store';
 import { setLoadingState } from '@redux/authUtilSlice';
 import { saveUserData } from '@redux/userSlice';

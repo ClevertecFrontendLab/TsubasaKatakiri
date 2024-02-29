@@ -2,7 +2,8 @@ import { combineReducers } from '@reduxjs/toolkit';
 import { configureStore } from '@reduxjs/toolkit';
 import { createReduxHistoryContext } from 'redux-first-history';
 import { createBrowserHistory } from 'history';
-import { authAPI } from './APISlice.ts'
+import { authAPI } from './authAPISlice.ts'
+import { feedbackAPI } from './feedbackAPISlice.ts'
 import authUtilsReducer from './authUtilSlice.ts';
 import userDataReducer from './userSlice.ts';
 

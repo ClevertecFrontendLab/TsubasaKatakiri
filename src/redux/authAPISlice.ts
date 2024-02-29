@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ChangePassword } from "src/interfaces/ChangePassword";
 import { CheckEmail } from "src/interfaces/CheckEmail";
 import { ConfirmEmail } from "src/interfaces/ConfirmEmail";
+import { Post } from "src/interfaces/Post";
 import { ServerResponseLogin } from "src/interfaces/ServerResponseLogin";
 import { User } from "src/interfaces/User";
 
@@ -67,6 +68,27 @@ export const authAPI = createApi({
             transformResponse: () => ({
                 statusCode: 201
             })
+        }),
+
+        getFeedback: builder.query<{statusCode: number, posts: Post[]}, void>({
+            query: () => ({
+                url: '/feedback',
+                method: 'GET'
+            }),
+            transformResponse: (response: {posts: Post[]}) => ({
+                statusCode: 200,
+                posts: response.posts
+            })
+        }),
+        postFeedback: builder.mutation<{statusCode: number}, Partial<Post>>({
+            query: (postData) => ({
+                url: '/feedback',
+                method: 'POST',
+                body: postData
+            }),
+            transformResponse: () => ({
+                statusCode: 201
+            })
         })
     })
 })
@@ -77,3 +99,6 @@ export const { useLoginUserMutation } = authAPI;
 export const { useCheckEmailMutation } = authAPI;
 export const { useConfirmEmailMutation } = authAPI;
 export const { useChangePasswordMutation } = authAPI;
+
+export const { useGetFeedbackQuery } = authAPI;
+export const { usePostFeedbackMutation } = authAPI;

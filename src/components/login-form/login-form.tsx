@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { GooglePlusOutlined } from '@ant-design/icons';
 import { useForm } from 'antd/es/form/Form';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
-import { useCheckEmailMutation, useLoginUserMutation } from '@redux/APISlice';
+import { useCheckEmailMutation, useLoginUserMutation } from '@redux/authAPISlice';
 import { User } from 'src/interfaces/User';
 import { history, store } from '@redux/configure-store';
 import { ROUTE_PATHS } from '../../routes/route-paths';

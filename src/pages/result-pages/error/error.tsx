@@ -8,7 +8,7 @@ import MessageWindow from '@components/message-window/message-window';
 import { history } from '@redux/configure-store';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { setLoadingState } from '@redux/authUtilSlice';
-import { useRegisterUserMutation } from '@redux/APISlice';
+import { useRegisterUserMutation } from '@redux/authAPISlice';
 
 
 const Error:React.FC = () => {
