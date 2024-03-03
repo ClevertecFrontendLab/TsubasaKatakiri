@@ -1,31 +1,30 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
-import { Post } from "src/interfaces/Post";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { Post, PostData } from "src/interfaces/Post";
+
 
 export const feedbackAPI = createApi({
-    reducerPath: 'authAPI',
+    reducerPath: 'feedbackAPI',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://marathon-api.clevertec.ru/feedback',
+        baseUrl: 'https://marathon-api.clevertec.ru/',
         credentials: 'include',
         prepareHeaders: (headers) => {
             const accessToken = localStorage.getItem('accessToken');
-            if(accessToken) headers.set('Authorization', `Bearer ${accessToken}`);
+            const sessionToken = sessionStorage.getItem('accessToken');
+            if(accessToken || sessionToken) headers.set('Authorization', `Bearer ${accessToken}`);
             return headers;
         }
     }),
     endpoints: (builder) => ({
-        getFeedback: builder.query<{statusCode: number, posts: Post[]}, void>({
+        getFeedback: builder.query<Array<PostData>, void>({
             query: () => ({
-                url: '/',
+                url: '/feedback',
                 method: 'GET'
             }),
-            transformResponse: (response: {posts: Post[]}) => ({
-                statusCode: 201,
-                posts: response.posts
-            })
         }),
+
         postFeedback: builder.mutation<{statusCode: number}, Partial<Post>>({
             query: (postData) => ({
-                url: '/',
+                url: '/feedback',
                 method: 'POST',
                 body: postData
             }),
@@ -36,6 +35,8 @@ export const feedbackAPI = createApi({
     })
 })
 
-// export const { useRegisterUserMutation, useLoginUserMutation } = authAPI;
-export const { useGetFeedbackQuery } = feedbackAPI;
-export const { usePostFeedbackMutation } = feedbackAPI;
+
+export const { 
+    useGetFeedbackQuery, 
+    usePostFeedbackMutation 
+} = feedbackAPI;

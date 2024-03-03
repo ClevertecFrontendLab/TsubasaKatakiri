@@ -6,6 +6,7 @@ import { authAPI } from './authAPISlice.ts'
 import { feedbackAPI } from './feedbackAPISlice.ts'
 import authUtilsReducer from './authUtilSlice.ts';
 import userDataReducer from './userSlice.ts';
+import feedbackDataReducer from './feedbackSlice.ts';
 
 const {
         createReduxHistory,
@@ -17,10 +18,12 @@ export const store = configureStore({
     reducer: combineReducers({
         router: routerReducer,
         [authAPI.reducerPath]: authAPI.reducer,
+        [feedbackAPI.reducerPath]: feedbackAPI.reducer,
         authUtils: authUtilsReducer,
-        userData: userDataReducer
+        userData: userDataReducer,
+        feedbackData: feedbackDataReducer
     }),
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(routerMiddleware).concat(authAPI.middleware)
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(routerMiddleware).concat(authAPI.middleware).concat(feedbackAPI.middleware)
 });
 
 export const history = createReduxHistory(store);

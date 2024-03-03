@@ -1,7 +1,7 @@
 import Footer from '@components/footer/footer';
 import Header from '@components/header/header';
 import Sidebar from '@components/sidebar/sidebar';
-import React, { Fragment, ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import classes from './layout.module.scss';
 import { Layout } from 'antd';
 import { useWindowWidth } from '@hooks/use-window-width';
@@ -35,7 +35,7 @@ const LayoutBlock: React.FC<IProps> = ({children} : IProps) => {
                 <div className={classes.pageContainer}>
                     {children}
                 </div>
-                <Footer/>
+                {/* <Footer/> */}
             </Layout>
         </Layout>
     );

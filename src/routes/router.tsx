@@ -12,6 +12,7 @@ import SuccessChangePassword from '@pages/result-pages/success-change-password/s
 import ErrorChangePassword from '@pages/result-pages/error-change-password/error-change-password';
 import ErrorCheckEmailNoExist from '@pages/result-pages/error-check-email-no-exist/error-check-email-no-exist';
 import ErrorCheckEmail from '@pages/result-pages/error-check-email/error-check-email';
+import FeedbackPage from '@pages/feedback-page/feedback-page';
 
 const Router = () => {
     return (
@@ -30,6 +31,7 @@ const Router = () => {
             <Route path={ROUTE_PATHS.errorChangePassword} element={<ErrorChangePassword/>}/>
             <Route path={ROUTE_PATHS.errorCheckEmailNoExist} element={<ErrorCheckEmailNoExist/>}/>
             <Route path={ROUTE_PATHS.errorCheckEmail} element={<ErrorCheckEmail/>}/>
+            <Route path={ROUTE_PATHS.feedbacks} element={<FeedbackPage />} />
         </Routes>
     );
 };

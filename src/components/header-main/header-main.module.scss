@@ -1,0 +1,64 @@
+:global{
+    .ant-layout-header{
+        padding: 16px 24px;
+        height: inherit;
+    }
+
+    h1.ant-typography{
+        margin: 0;
+        font-size: 38px;
+        font-weight: 700;
+        max-width: 1055px;
+        margin-right: 5px;
+    }
+}
+
+.header{
+    width: 100%;
+    background-color: #F0F5FF;
+
+    &Text{
+        margin-bottom: 0;
+    }
+
+    &Info{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 6px 0;
+        background-color: #F0F5FF;
+
+        h1{
+            font-size: 38px;
+            line-height: 130%;
+        }
+    }
+
+    &Settings{
+        color: #262626;
+    }
+}
+
+@media screen and (max-width: 834px){
+    :global{
+        h1.ant-typography{
+            font-size: 24px;
+            line-height: 31.2px;
+            font-weight: 500;
+        }
+    }
+}
+
+@media screen and (max-width: 576px){
+    :global{
+        h1.ant-typography{
+            font-size: 20px;
+            line-height: 26px;
+        }
+        
+        .ant-breadcrumb{
+            margin-bottom: 24px;
+        }
+    }
+}

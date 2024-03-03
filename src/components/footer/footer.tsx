@@ -2,12 +2,14 @@ import { AndroidFilled, AppleFilled } from '@ant-design/icons';
 import { Button, Card, Layout, Typography } from 'antd';
 import React from 'react';
 import classes from './footer.module.scss';
+import { history } from '@redux/configure-store';
+import { ROUTE_PATHS } from '../../routes/route-paths';
 
 
 const Footer: React.FC = () => {
     return (
         <Layout.Footer className={classes.footer}>
-            <Button type='link' size='large'className={classes.link}>Смотреть отзывы</Button>
+            <Button type='link' size='large'className={classes.link} onClick={() => history.push(ROUTE_PATHS.feedbacks)}>Смотреть отзывы</Button>
             <Card className={classes.card} size='small' title={
                 <div className={classes.cardHeader}>
                     <Typography.Text className={classes.cardTitle}>Скачать на телефон</Typography.Text>

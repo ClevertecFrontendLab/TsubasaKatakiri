@@ -11,5 +11,6 @@ export const ROUTE_PATHS = {
     errorCheckEmail: '/result/error-check-email',
     errorCheckEmailNoExist: '/result/error-check-email-no-exist',
     successChangePassword: '/result/success-change-password',
-    errorChangePassword: '/result/error-change-password'
+    errorChangePassword: '/result/error-change-password',
+    feedbacks: '/feedbacks',
 }
