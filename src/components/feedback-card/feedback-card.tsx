@@ -2,7 +2,7 @@ import React from 'react';
 import { PostData } from 'src/interfaces/Post';
 import { Avatar, Card, Rate, Space, Typography } from 'antd';
 import classes from './feedback-card.module.scss'
-import AvatarPlaceholder from '../../resources/icons/Avatar.svg';
+import AvatarPlaceholder from '../../resources/icons/avatar.svg';
 import { useWindowWidth } from '@hooks/use-window-width';
 import { StarFilled, StarOutlined } from '@ant-design/icons';
 
