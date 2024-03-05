@@ -19,10 +19,13 @@ const LoginForm: React.FC = () => {
     const [isRemember, setIsRemember] = useState<boolean | undefined>(false);
 
     const onFinish = (values: User) => {
-        if(values.remember) setIsRemember(values.remember);
+        console.log(values);
+        setIsRemember(values.remember);
+        console.log(values.remember);
         loginUser({email: values.email, password: values.password});
         dispatch(setLoadingState(true));
     }
+
 
     const onForgot = () => {
         const emailError = form.getFieldError('email');
@@ -71,7 +74,7 @@ const LoginForm: React.FC = () => {
             <Form 
             form={form}
             name='login'
-            initialValues={{remember: true}}
+            initialValues={{remember: false}}
             onFinish={onFinish}
             >
                 <Form.Item
@@ -98,7 +101,7 @@ const LoginForm: React.FC = () => {
                     <Form.Item
                         name={'remember'}
                         className={classes.checkbox}
-                        valuePropName='checked'
+                        valuePropName={'checked'}
                         style={{marginBottom: 0}}
                     >
                         <Checkbox data-test-id='login-remember'>Запомнить меня</Checkbox>

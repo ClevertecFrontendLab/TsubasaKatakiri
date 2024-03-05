@@ -18,11 +18,11 @@ const Footer: React.FC = () => {
 
     return (
         <Layout.Footer className={classes.footer}>
-            <Button type='link' size='large'className={classes.link} onClick={handleFeedback}>Смотреть отзывы</Button>
+            <Button type='link' size='large'className={classes.link} onClick={handleFeedback} data-test-id='see-reviews'>Смотреть отзывы</Button>
             <Card className={classes.card} size='small' title={
                 <div className={classes.cardHeader}>
-                    <Typography.Text className={classes.cardTitle}>Скачать на телефон</Typography.Text>
-                    <Typography.Text className={classes.cardText}>Доступно в PRO-тарифе</Typography.Text>
+                    <Typography.Text className={classes.cardTitle} style={{textAlign: 'left', color: '#2F54EB', marginBottom: 0, fontSize: '16px'}}>Скачать на телефон</Typography.Text>
+                    <Typography.Text className={classes.cardText} style={{textAlign: 'left', fontSize: '14px', marginBottom: 0,}}>Доступно в PRO-тарифе</Typography.Text>
                 </div>
             } headStyle={{padding: '0px 24px'}} bodyStyle={{padding: '12px 0'}}>
                 <div className={classes.cardButtons}>

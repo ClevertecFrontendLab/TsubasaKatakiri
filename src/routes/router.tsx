@@ -14,6 +14,7 @@ import ErrorCheckEmailNoExist from '@pages/result-pages/error-check-email-no-exi
 import ErrorCheckEmail from '@pages/result-pages/error-check-email/error-check-email';
 import FeedbackPage from '@pages/feedback-page/feedback-page';
 import { useEffect } from 'react';
+import { history } from '@redux/configure-store';
 
 
 const Router = () => {
@@ -23,22 +24,26 @@ const Router = () => {
         const accessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
         if(location.pathname === ROUTE_PATHS.root){
             if(accessToken){
-                navigate(ROUTE_PATHS.main);
+                history.push(ROUTE_PATHS.main);
             } else {
                 const gtoken = new URL(window.location.href).searchParams.get('accessToken');
                 if (gtoken) {
                     localStorage.setItem('accessToken', gtoken);
-                    navigate(ROUTE_PATHS.main);
+                    history.push(ROUTE_PATHS.main);
                 } else {
-                    navigate(ROUTE_PATHS.auth);
+                    history.push(ROUTE_PATHS.auth);
                 }
             }
-        } else if ((location.pathname === ROUTE_PATHS.main || location.pathname === ROUTE_PATHS.feedbacks) && !accessToken){
-            navigate(ROUTE_PATHS.auth);
+        } else if ((location.pathname.startsWith('/main') || location.pathname.startsWith('/feedbacks')) && !accessToken){
+            history.push(ROUTE_PATHS.auth);
         } else if ((location.pathname.startsWith('/auth') || location.pathname.startsWith('/result')) && accessToken){
-            navigate(ROUTE_PATHS.main);
+            history.push(ROUTE_PATHS.main);
         }
     }, [navigate])
+
+    useEffect(() => {
+        window.addEventListener('beforeunload', () => sessionStorage.removeItem('accessToken'));
+    }, [])
 
     return (
         <Routes>

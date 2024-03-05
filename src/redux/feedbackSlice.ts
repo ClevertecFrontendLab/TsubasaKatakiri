@@ -25,4 +25,7 @@ const feedbackData = createSlice({
 })
 
 export default feedbackData.reducer;
-export const {setFeedbackData, setIsExpanded} = feedbackData.actions;
+export const {
+    setFeedbackData, 
+    setIsExpanded
+} = feedbackData.actions;

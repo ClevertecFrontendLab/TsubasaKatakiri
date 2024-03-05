@@ -12,9 +12,8 @@ export const authAPI = createApi({
         baseUrl: 'https://marathon-api.clevertec.ru/auth',
         credentials: 'include',
         prepareHeaders: (headers) => {
-            const accessToken = localStorage.getItem('accessToken');
-            const sessionToken = sessionStorage.getItem('accessToken');
-            if(accessToken || sessionToken) headers.set('Authorization', `Bearer ${accessToken}`);
+            const accessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
+            if(accessToken) headers.set('Authorization', `Bearer ${accessToken}`);
             return headers;
         }
     }),

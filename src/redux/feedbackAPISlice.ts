@@ -8,9 +8,8 @@ export const feedbackAPI = createApi({
         baseUrl: 'https://marathon-api.clevertec.ru/',
         credentials: 'include',
         prepareHeaders: (headers) => {
-            const accessToken = localStorage.getItem('accessToken');
-            const sessionToken = sessionStorage.getItem('accessToken');
-            if(accessToken || sessionToken) headers.set('Authorization', `Bearer ${accessToken}`);
+            const accessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
+            if(accessToken) headers.set('Authorization', `Bearer ${accessToken}`);
             return headers;
         }
     }),
@@ -37,6 +36,6 @@ export const feedbackAPI = createApi({
 
 
 export const { 
-    useGetFeedbackQuery, 
+    useLazyGetFeedbackQuery, 
     usePostFeedbackMutation 
 } = feedbackAPI;

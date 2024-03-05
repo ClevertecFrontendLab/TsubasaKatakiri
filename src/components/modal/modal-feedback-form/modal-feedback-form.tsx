@@ -4,7 +4,7 @@ import { Button, Form, Modal, Rate } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import TextArea from 'antd/lib/input/TextArea';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import { usePostFeedbackMutation } from '@redux/feedbackAPISlice';
+import { useLazyGetFeedbackQuery, usePostFeedbackMutation } from '@redux/feedbackAPISlice';
 import { Post } from 'src/interfaces/Post';
 import { StarOutlined } from '@ant-design/icons';
 import { setLoadingApp } from '@redux/appUtilSlice';
@@ -21,13 +21,13 @@ const ModalFeedbackForm: React.FC<IProps> = ({isOpen, setIsOpen, setIsSuccess, s
     const [rating, setRating] = useState<number>(0)
     const dispatch = useAppDispatch();
     const [postFeedback, {data, isLoading, error}] = usePostFeedbackMutation();
+    const [getFeedback] = useLazyGetFeedbackQuery();
     
     const handleOk = () => {
         dispatch(setLoadingApp(true));
         const values: Post = form.getFieldsValue();
         postFeedback(values);
         setIsOpen(false);
-        
     };
     
     const handleCancel = () => {
@@ -37,10 +37,12 @@ const ModalFeedbackForm: React.FC<IProps> = ({isOpen, setIsOpen, setIsSuccess, s
     useEffect(() => {
         if(data){
             setIsSuccess(true);
+            getFeedback();
+            dispatch(setLoadingApp(false));
         } else if (error){
             setIsFail(true)
+            dispatch(setLoadingApp(false));
         }
-        dispatch(setLoadingApp(false));
     }, [data, isLoading, error])
 
     return (
@@ -51,7 +53,7 @@ const ModalFeedbackForm: React.FC<IProps> = ({isOpen, setIsOpen, setIsSuccess, s
             onOk={handleOk} 
             onCancel={handleCancel}
             footer = {[
-                <Button key='submit' type={'primary'} onClick={handleOk} size='large' style={{width: 'unset'}} disabled={rating === 0}>
+                <Button key='submit' type={'primary'} onClick={handleOk} size='large' style={{width: 'unset'}} disabled={rating === 0} data-test-id='new-review-submit-button'>
                     Опубликовать
                 </Button>
             ]}

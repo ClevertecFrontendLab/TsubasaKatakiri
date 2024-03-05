@@ -7,7 +7,7 @@ const HeaderMain = () => {
     const isMobile = useWindowWidth();
 
     return (
-        <Layout.Header className={classes.headerInfo}>
+        <Layout.Header className={classes.headerInfo} style={{paddingTop: 0}}>
             <Typography.Title className={classes.headerText}>Приветствуем тебя в CleverFit - приложении, которое поможет тебе добиться своей мечты!</Typography.Title>
             {!isMobile
                 ? <Button className={classes.headerSettings} type='text' icon={<SettingOutlined />}>{!isMobile && 'Настройки'}</Button>

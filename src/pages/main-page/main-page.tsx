@@ -2,7 +2,6 @@ import React, { lazy, Suspense } from 'react';
 
 import classes from './main-page.module.scss';
 import 'antd/dist/antd.css';
-// import LayoutBlock from '@components/layout/layout';
 import { Button, Card, Typography } from 'antd';
 import { CalendarOutlined, HeartFilled, IdcardOutlined } from '@ant-design/icons';
 import LayoutMainPage from '@components/layout-main-page/layout-main-page';

@@ -12,7 +12,9 @@ const LayoutMainPage: React.FC<IProps> = ({children} : IProps) => {
     return (
         <Layout>
             <HeaderMain/>
-            {children}
+            <div className={classes.pageContainer}>
+                {children}
+            </div>
             <Footer/>
         </Layout>
     );
