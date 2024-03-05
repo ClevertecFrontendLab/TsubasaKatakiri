@@ -7,6 +7,7 @@ import { feedbackAPI } from './feedbackAPISlice.ts'
 import authUtilsReducer from './authUtilSlice.ts';
 import userDataReducer from './userSlice.ts';
 import feedbackDataReducer from './feedbackSlice.ts';
+import appUtilsReducer from './appUtilSlice.ts';
 
 const {
         createReduxHistory,
@@ -21,7 +22,8 @@ export const store = configureStore({
         [feedbackAPI.reducerPath]: feedbackAPI.reducer,
         authUtils: authUtilsReducer,
         userData: userDataReducer,
-        feedbackData: feedbackDataReducer
+        feedbackData: feedbackDataReducer,
+        appUtils: appUtilsReducer
     }),
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(routerMiddleware).concat(authAPI.middleware).concat(feedbackAPI.middleware)
 });

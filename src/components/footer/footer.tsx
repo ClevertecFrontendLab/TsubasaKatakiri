@@ -4,12 +4,21 @@ import React from 'react';
 import classes from './footer.module.scss';
 import { history } from '@redux/configure-store';
 import { ROUTE_PATHS } from '../../routes/route-paths';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
+import { setLoadingApp } from '@redux/appUtilSlice';
 
 
 const Footer: React.FC = () => {
+    const dispatch = useAppDispatch();
+
+    const handleFeedback = () => {
+        dispatch(setLoadingApp(true));
+        history.push(ROUTE_PATHS.feedbacks)
+    }
+
     return (
         <Layout.Footer className={classes.footer}>
-            <Button type='link' size='large'className={classes.link} onClick={() => history.push(ROUTE_PATHS.feedbacks)}>Смотреть отзывы</Button>
+            <Button type='link' size='large'className={classes.link} onClick={handleFeedback}>Смотреть отзывы</Button>
             <Card className={classes.card} size='small' title={
                 <div className={classes.cardHeader}>
                     <Typography.Text className={classes.cardTitle}>Скачать на телефон</Typography.Text>

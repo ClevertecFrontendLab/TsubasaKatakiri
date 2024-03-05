@@ -7,6 +7,8 @@ import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { setFeedbackData } from '@redux/feedbackSlice';
 import { history } from '@redux/configure-store';
 import { PostData } from 'src/interfaces/Post';
+import { setLoadingApp } from '@redux/appUtilSlice';
+import FeedbackPlaceholder from '@components/feedback-placeholder/feedback-placeholder';
 
 
 const FeedbackModule: React.FC = () => {
@@ -16,8 +18,9 @@ const FeedbackModule: React.FC = () => {
 
     useEffect(() => {
         if(data){
-            const sortedData = [...data].sort((a: PostData, b : PostData) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+            const sortedData = [...data].sort((a: PostData, b : PostData) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
             dispatch(setFeedbackData(sortedData));
+            dispatch(setLoadingApp(false));
         } else if(error){
             if(('status' in error) && (error.status === 403)){
                 history.push('/auth');
@@ -30,8 +33,8 @@ const FeedbackModule: React.FC = () => {
 
     return (
         <div>
-            {feedbackOutput.length > 0 && 
-                <List
+            {feedbackOutput.length > 0 
+                ? <List
                     dataSource={feedbackOutput}
                     split={false}
                     renderItem={item => (
@@ -40,6 +43,7 @@ const FeedbackModule: React.FC = () => {
                         </List.Item>
                     )}
                 />
+                : <FeedbackPlaceholder/>
             }
         </div>
     );

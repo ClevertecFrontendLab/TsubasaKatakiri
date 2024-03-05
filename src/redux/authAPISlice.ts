@@ -82,5 +82,5 @@ export const {
     useLoginUserMutation, 
     useCheckEmailMutation, 
     useConfirmEmailMutation, 
-    useChangePasswordMutation 
+    useChangePasswordMutation,
 } = authAPI;

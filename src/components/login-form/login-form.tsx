@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import classes from'./login-form.module.scss';
 import { Button, Checkbox, Form, Input } from 'antd';
-import { Link } from 'react-router-dom';
 import { GooglePlusOutlined } from '@ant-design/icons';
 import { useForm } from 'antd/es/form/Form';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { useCheckEmailMutation, useLoginUserMutation } from '@redux/authAPISlice';
 import { User } from 'src/interfaces/User';
-import { history, store } from '@redux/configure-store';
+import { history } from '@redux/configure-store';
 import { ROUTE_PATHS } from '../../routes/route-paths';
 import { setLoadingState, setUserEmail } from '@redux/authUtilSlice';
+
 
 const LoginForm: React.FC = () => {
     const [form] = useForm();
@@ -34,6 +34,11 @@ const LoginForm: React.FC = () => {
         }
     }
 
+    const onGoogleLogin = () => {
+        window.location.href = 'https://marathon-api.clevertec.ru/auth/google';
+    }
+
+
     useEffect(() => {
         if(checkData){
             history.push(ROUTE_PATHS.confirmEmail);
@@ -44,7 +49,7 @@ const LoginForm: React.FC = () => {
                 history.push(ROUTE_PATHS.errorCheckEmailNoExist);
             } else history.push(ROUTE_PATHS.errorCheckEmail);
         }
-    }, [checkData, checkError])
+    }, [checkData, checkError, dispatch])
 
     useEffect(() => {
         if(data && 'accessToken' in data){
@@ -59,7 +64,7 @@ const LoginForm: React.FC = () => {
             dispatch(setLoadingState(false));
             history.push(ROUTE_PATHS.errorLogin);
         }
-    }, [data, error, isLoading])
+    }, [data, error, isLoading, dispatch, isRemember])
 
     return (
         <div>
@@ -102,7 +107,7 @@ const LoginForm: React.FC = () => {
                 </div>
                 <Button type='primary' htmlType='submit' className={classes.formButton} size='large' data-test-id='login-submit-button'>Войти</Button>
             </Form>
-            <Button type='default' icon={<GooglePlusOutlined />} className={classes.formButton} size='large'>Войти через Google</Button>
+            <Button type='default' icon={<GooglePlusOutlined />} className={classes.formButton} size='large' onClick={onGoogleLogin}>Войти через Google</Button>
         </div>
     );
 };
