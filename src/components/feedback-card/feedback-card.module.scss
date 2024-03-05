@@ -46,3 +46,25 @@
         color: #8C8C8C;
     }
 }
+
+@media screen and (max-width: 576px){
+    :global{
+        .ant-card-meta{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ant-card-meta-avatar{
+            display: flex;
+            align-items: center;
+        }
+
+        .ant-card-meta-avatar{
+            padding-right: 12px;
+        }
+
+        .ant-avatar{
+            margin-right: 8px;
+        }
+    }
+} 

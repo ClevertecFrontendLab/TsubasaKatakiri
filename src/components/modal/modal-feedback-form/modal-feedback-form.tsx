@@ -6,7 +6,7 @@ import TextArea from 'antd/lib/input/TextArea';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { useLazyGetFeedbackQuery, usePostFeedbackMutation } from '@redux/feedbackAPISlice';
 import { Post } from 'src/interfaces/Post';
-import { StarOutlined } from '@ant-design/icons';
+import { StarFilled, StarOutlined } from '@ant-design/icons';
 import { setLoadingApp } from '@redux/appUtilSlice';
 
 interface IProps{
@@ -68,7 +68,9 @@ const ModalFeedbackForm: React.FC<IProps> = ({isOpen, setIsOpen, setIsSuccess, s
                     name={'rating'}
                     style={{marginBottom: '16px'}}
                 >
-                    <Rate value={rating} onChange={setRating}/>
+                    <Rate value={rating} onChange={setRating} character={({value, index}) => {
+                        return value && index! < value ? <StarFilled style={{color: '#FAAD14'}}/> : <StarOutlined style={{color: '#FAAD14'}}/>
+                    }}/>
                 </Form.Item>
                 <Form.Item
                     name={'message'}

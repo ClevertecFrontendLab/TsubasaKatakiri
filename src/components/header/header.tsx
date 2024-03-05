@@ -1,25 +1,37 @@
-import { SettingOutlined } from '@ant-design/icons';
 import React from 'react';
 import classes from './header.module.scss';
-import { Breadcrumb, Button, Layout, Typography } from 'antd';
-import { useWindowWidth } from '@hooks/use-window-width';
+import { Breadcrumb, Layout } from 'antd';
+import { Link, useLocation } from 'react-router-dom';
+
+const breadcrumbData: Record<string, string> = {
+    '/main': 'Главная',
+    '/feedbacks': 'Отзывы пользователей'
+}
 
 const Header: React.FC = () => {
-    const isMobile = useWindowWidth();
+    const location = useLocation();
+    const pathData = location.pathname.split('/').filter(item => item);
+
+    const additionalItems = pathData.map((_, i) => {
+        const url = `/${pathData.slice(0, i+1).join('/')}`;
+        return (<Breadcrumb.Item key={url}>
+                    <Link to={url}>{breadcrumbData[url]}</Link>
+                </Breadcrumb.Item>
+        )
+    })
+
+    const breadcrumbItems = [
+        <Breadcrumb.Item key={'home'}>
+            {additionalItems[0].key !== '/main' ? <Link to={'/main'}>Главная</Link> : null}
+        </Breadcrumb.Item>
+    ].concat(additionalItems);
 
     return (
         <Layout.Header className={classes.header}>
             <div className={classes.headerContainer}>
                 <Breadcrumb>
-                    <Breadcrumb.Item href="/main">Главная</Breadcrumb.Item>
+                    {breadcrumbItems}
                 </Breadcrumb>
-                {/* <div className={classes.headerInfo}>
-                    <Typography.Title className={classes.headerText}>Приветствуем тебя в CleverFit - приложении, которое поможет тебе добиться своей мечты!</Typography.Title>
-                    {!isMobile
-                        ? <Button className={classes.headerSettings} type='text' icon={<SettingOutlined />}>{!isMobile && 'Настройки'}</Button>
-                        : <Button className={classes.headerSettings} type='default' shape='circle' icon={<SettingOutlined />}/>
-                    }
-                </div> */}
             </div>
         </Layout.Header>
     );

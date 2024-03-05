@@ -1,5 +1,14 @@
 :global{
     .ant-rate-star-half .ant-rate-star-first, .ant-rate-star-full .ant-rate-star-second{
-        color: #FAAD14;
+        fill: #FAAD14;
+    }
+
+    // .ant-rate-star-first, .ant-rate-star-first{
+    //     stroke: #FAAD14;
+    // }
+
+    .anticon .anticon-star > svg{
+        stroke: #FAAD14;
+        fill: #FAAD14;
     }
 }

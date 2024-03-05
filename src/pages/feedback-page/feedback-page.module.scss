@@ -1,3 +1,14 @@
+:global{
+    .ant-modal-mask{
+        background-color: rgba($color: #799CD4, $alpha: 0.5);
+        backdrop-filter: blur(5px);
+    }
+
+    .ant-modal-content{
+        margin: 8px;
+    }
+}
+
 .feedbackWrapper{
     padding: 24px;
     width: 100%;
@@ -15,3 +26,15 @@
 .feedbackControls{
     margin-top: auto;
 }
+
+@media screen and (max-width: 576px){
+    .feedbackWrapper{
+        padding: 0;
+    }
+
+    .feedbackControls{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+} 

@@ -2,6 +2,7 @@ import React from 'react';
 import { List } from 'antd';
 import FeedbackCard from '@components/feedback-card/feedback-card';
 import { useAppSelector } from '@hooks/typed-react-redux-hooks';
+import classes from './feedback-module.module.scss'
 
 
 const FeedbackModule: React.FC = () => {
@@ -10,7 +11,7 @@ const FeedbackModule: React.FC = () => {
     const feedbackOutput = isExpanded ? feedbacks : feedbacks.slice(0, 4);
 
     return (
-        <div>
+        <div className={classes.feedbackListWrapper}>
             <List
                 dataSource={feedbackOutput}
                 split={false}

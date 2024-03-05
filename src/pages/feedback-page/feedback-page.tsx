@@ -14,8 +14,10 @@ import { PostData } from 'src/interfaces/Post';
 import { setLoadingApp } from '@redux/appUtilSlice';
 import { history } from '@redux/configure-store';
 import FeedbackPlaceholder from '@components/feedback-placeholder/feedback-placeholder';
+import { useWindowWidth } from '@hooks/use-window-width';
 
 const FeedbackPage: React.FC = () => {
+    const isMobile = useWindowWidth();
     const dispatch = useAppDispatch();
     const {feedbacks, isExpanded} = useAppSelector(state => state.feedbackData);
     const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState<boolean>(false);
@@ -65,9 +67,9 @@ const FeedbackPage: React.FC = () => {
             {feedbacks.length > 0 
                 ?   <div className={classes.feedbackWrapper}>
                         <FeedbackModule/>
-                        <Space className={classes.feedbackControls}>
+                        <Space direction={isMobile ? 'vertical' : 'horizontal'} className={classes.feedbackControls} style={{gap: '16px'}}>
                             <Button type='primary' size='large' onClick={showFeedbackModal} data-test-id='write-review'>Написать отзыв</Button>
-                            <Button type='link' size='large' onClick={handleExpand} data-test-id='all-reviews-button'>{isExpanded ? 'Свернуть' : 'Развернуть'} все отзывы</Button>
+                            <Button type='link' size='large' onClick={handleExpand} data-test-id='all-reviews-button' style={{width: '100%'}}>{isExpanded ? 'Свернуть' : 'Развернуть'} все отзывы</Button>
                         </Space>
                     </div>
                 : !isLoadingApp ? <FeedbackPlaceholder setOpenFeedback={setIsFeedbackModalOpen}/> : ''
