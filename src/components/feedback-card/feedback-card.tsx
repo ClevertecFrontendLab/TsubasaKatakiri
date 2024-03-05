@@ -17,7 +17,7 @@ const FeedbackCard: React.FC<PostData> = ({createdAt, fullName, id, imageSrc, me
                 avatar={
                     <Space direction={isMobile ? 'horizontal' : 'vertical'} align='center' className={classes.feedbackAvatarSpace}>
                         <Avatar src={imageSrc || AvatarPlaceholder} className={classes.feedbackAvatar}/>
-                        <Typography.Title level={5} style={{marginBottom: 0, maxWidth: '100px'}}>{fullName}</Typography.Title>
+                        <Typography.Title level={5} style={{marginBottom: 0, maxWidth: '110px'}} className={classes.feedbackName}>{fullName || 'Пользователь'}</Typography.Title>
                     </Space>
                 }
                 title={

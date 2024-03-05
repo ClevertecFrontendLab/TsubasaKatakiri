@@ -58,27 +58,29 @@ const ModalFeedbackForm: React.FC<IProps> = ({isOpen, setIsOpen, setIsSuccess, s
                 </Button>
             ]}
         >
-            <Form 
-                form={form}
-                name='login'
-                initialValues={{remember: true}}
-                onFinish={handleOk}
-            >
-                <Form.Item
-                    name={'rating'}
-                    style={{marginBottom: '16px'}}
+            <div className={classes.modalContainer}>
+                <Form 
+                    form={form}
+                    name='login'
+                    initialValues={{remember: true}}
+                    onFinish={handleOk}
                 >
-                    <Rate value={rating} onChange={setRating} character={({value, index}) => {
-                        return value && index! < value ? <StarFilled style={{color: '#FAAD14'}}/> : <StarOutlined style={{color: '#FAAD14'}}/>
-                    }}/>
-                </Form.Item>
-                <Form.Item
-                    name={'message'}
-                    style={{marginBottom: '0'}}
-                >
-                    <TextArea size='large' autoSize={{minRows: 2}} placeholder='Autosize height based on content lines'/>
-                </Form.Item>
-            </Form>
+                    <Form.Item
+                        name={'rating'}
+                        style={{marginBottom: '16px'}}
+                    >
+                        <Rate value={rating} onChange={setRating} character={({value, index}) => {
+                            return value && index! < value ? <StarFilled style={{color: '#FAAD14'}}/> : <StarOutlined style={{color: '#FAAD14'}}/>
+                        }}/>
+                    </Form.Item>
+                    <Form.Item
+                        name={'message'}
+                        style={{marginBottom: '0'}}
+                    >
+                        <TextArea size='large' autoSize={{minRows: 2}} placeholder='Autosize height based on content lines'/>
+                    </Form.Item>
+                </Form>
+            </div>
         </Modal>
     );
 };

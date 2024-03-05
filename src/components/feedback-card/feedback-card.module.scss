@@ -45,6 +45,10 @@
         line-height: 18.2px;
         color: #8C8C8C;
     }
+
+    &Name{
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 576px){
@@ -66,5 +70,9 @@
         .ant-avatar{
             margin-right: 8px;
         }
+    }
+
+    .feedbackName{
+        text-align: left;
     }
 } 

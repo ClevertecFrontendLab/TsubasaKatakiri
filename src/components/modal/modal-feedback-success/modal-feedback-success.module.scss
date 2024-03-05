@@ -7,3 +7,15 @@
     padding: 40px 51.5px;
     gap: 24px;
 }
+
+@media screen and (max-width: 576px){
+    :global{
+        .ant-modal-body{
+            padding: 0;
+        }
+    }
+
+    .modalContainer{
+        padding: 32px 16px;
+    }
+} 

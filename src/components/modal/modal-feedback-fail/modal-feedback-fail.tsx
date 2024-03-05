@@ -31,7 +31,7 @@ const ModalFeedbackFail: React.FC<IProps> = ({isOpenFail, setIsOpenFail, setIsOp
                 <Fail/>
                 <div className={classes.modalText}>
                     <Typography.Title style={{fontSize: '24px', lineHeight: '31.2px', fontWeight: 500, margin: 0}}>Данные не сохранились</Typography.Title>
-                    <Typography.Text style={{fontSize: '14px', lineHeight: '18.2px', fontWeight: 400, margin: 0, color: '#8C8C8C'}}>Что-то пошло не так. Попробуйте еще раз.</Typography.Text>
+                    <Typography.Text style={{fontSize: '14px', lineHeight: '18.2px', fontWeight: 400, margin: 0, color: '#8C8C8C'}} className={classes.modalCaption}>Что-то пошло не так. Попробуйте еще раз.</Typography.Text>
                 </div>
                 <div className={classes.modalButtons}>
                     <Button type='primary' size='large' style={{width: '100%'}} onClick={handleRetry} data-test-id='write-review-not-saved-modal'>Написать отзыв</Button>

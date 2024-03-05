@@ -4,6 +4,7 @@ import { Button, Modal, Typography } from 'antd';
 import FailSplash from '../../../resources/icons/error.svg?react';
 import { ROUTE_PATHS } from '../../../routes/route-paths';
 import { history } from '@redux/configure-store';
+import { useWindowWidth } from '@hooks/use-window-width';
 
 interface IProps{
     isOpen: boolean,
@@ -11,6 +12,7 @@ interface IProps{
 }
 
 const ModalFeedbackLoadFail : React.FC<IProps> = ({isOpen, setIsOpen}: IProps) => {
+    const isMobile = useWindowWidth();
 
     const handleClose = () => {
         setIsOpen(false);
@@ -28,7 +30,9 @@ const ModalFeedbackLoadFail : React.FC<IProps> = ({isOpen, setIsOpen}: IProps) =
                 <FailSplash/>
                 <div className={classes.modalText}>
                     <Typography.Title style={{fontSize: '24px', lineHeight: '31.2px', fontWeight: 500, margin: 0}}>Что-то пошло не так</Typography.Title>
-                    <Typography.Text style={{fontSize: '14px', lineHeight: '18.2px', fontWeight: 400, margin: 0, color: '#8C8C8C'}}>Произошла ошибка, попробуйте еще раз.</Typography.Text>
+                    <Typography.Text style={{fontSize: '14px', lineHeight: '18.2px', fontWeight: 400, margin: 0, color: '#8C8C8C'}}>
+                    Произошла ошибка, <>{isMobile && <br/>}</>попробуйте еще раз.
+                    </Typography.Text>
                 </div>
                 <Button size='large' type='primary' style={{width: 'unset'}} onClick={handleClose}>Назад</Button>
             </div>
