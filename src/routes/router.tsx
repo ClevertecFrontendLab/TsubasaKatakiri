@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { ROUTE_PATHS } from './route-paths';
 import { MainPage } from '@pages/main-page';
 import Auth from '@pages/auth/auth';
@@ -12,11 +12,42 @@ import SuccessChangePassword from '@pages/result-pages/success-change-password/s
 import ErrorChangePassword from '@pages/result-pages/error-change-password/error-change-password';
 import ErrorCheckEmailNoExist from '@pages/result-pages/error-check-email-no-exist/error-check-email-no-exist';
 import ErrorCheckEmail from '@pages/result-pages/error-check-email/error-check-email';
+import FeedbackPage from '@pages/feedback-page/feedback-page';
+import { useEffect } from 'react';
+import { history } from '@redux/configure-store';
+
 
 const Router = () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const accessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
+        if(location.pathname === ROUTE_PATHS.root){
+            if(accessToken){
+                history.push(ROUTE_PATHS.main);
+            } else {
+                const gtoken = new URL(window.location.href).searchParams.get('accessToken');
+                if (gtoken) {
+                    localStorage.setItem('accessToken', gtoken);
+                    history.push(ROUTE_PATHS.main);
+                } else {
+                    history.push(ROUTE_PATHS.auth);
+                }
+            }
+        } else if ((location.pathname.startsWith('/main') || location.pathname.startsWith('/feedbacks')) && !accessToken){
+            history.push(ROUTE_PATHS.auth);
+        } else if ((location.pathname.startsWith('/auth') || location.pathname.startsWith('/result')) && accessToken){
+            history.push(ROUTE_PATHS.main);
+        }
+    }, [navigate])
+
+    useEffect(() => {
+        window.addEventListener('beforeunload', () => sessionStorage.removeItem('accessToken'));
+    }, [])
+
     return (
         <Routes>
-            <Route path='/' element={<Navigate to={ROUTE_PATHS.main}/>}/>
+            <Route path={ROUTE_PATHS.root}/>
             <Route path={ROUTE_PATHS.main} element={<MainPage />} />
             <Route path={ROUTE_PATHS.auth} element={<Auth/>}/>
             <Route path={ROUTE_PATHS.registration} element={<Auth/>}/>
@@ -24,12 +55,14 @@ const Router = () => {
             <Route path={ROUTE_PATHS.changePassword} element={<ChangePassword/>}/>
             <Route path={ROUTE_PATHS.success} element={<Success/>}/>
             <Route path={ROUTE_PATHS.successChangePassword} element={<SuccessChangePassword/>}/>
+            <Route path={ROUTE_PATHS.resultRoot} element={<Navigate to={ROUTE_PATHS.auth}/>}/>
             <Route path={ROUTE_PATHS.error} element={<Error/>}/>
             <Route path={ROUTE_PATHS.errorLogin} element={<ErrorLogin/>}/>
             <Route path={ROUTE_PATHS.errorUserExist} element={<ErrorUserExists/>}/>
             <Route path={ROUTE_PATHS.errorChangePassword} element={<ErrorChangePassword/>}/>
             <Route path={ROUTE_PATHS.errorCheckEmailNoExist} element={<ErrorCheckEmailNoExist/>}/>
             <Route path={ROUTE_PATHS.errorCheckEmail} element={<ErrorCheckEmail/>}/>
+            <Route path={ROUTE_PATHS.feedbacks} element={<FeedbackPage />} />
         </Routes>
     );
 };

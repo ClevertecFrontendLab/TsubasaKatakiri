@@ -1,9 +1,11 @@
 export const ROUTE_PATHS = {
+    root: '/',
     main: '/main',
     auth: '/auth',
     registration: '/auth/registration',
     confirmEmail: '/auth/confirm-email',
     changePassword: '/auth/change-password',
+    resultRoot: '/result',
     success: '/result/success',
     error: '/result/error',
     errorLogin: '/result/error-login',
@@ -11,5 +13,6 @@ export const ROUTE_PATHS = {
     errorCheckEmail: '/result/error-check-email',
     errorCheckEmailNoExist: '/result/error-check-email-no-exist',
     successChangePassword: '/result/success-change-password',
-    errorChangePassword: '/result/error-change-password'
+    errorChangePassword: '/result/error-change-password',
+    feedbacks: '/feedbacks',
 }

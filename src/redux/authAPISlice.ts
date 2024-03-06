@@ -5,13 +5,14 @@ import { ConfirmEmail } from "src/interfaces/ConfirmEmail";
 import { ServerResponseLogin } from "src/interfaces/ServerResponseLogin";
 import { User } from "src/interfaces/User";
 
+
 export const authAPI = createApi({
     reducerPath: 'authAPI',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://marathon-api.clevertec.ru/',
+        baseUrl: 'https://marathon-api.clevertec.ru/auth',
         credentials: 'include',
         prepareHeaders: (headers) => {
-            const accessToken = localStorage.getItem('accessToken');
+            const accessToken = localStorage.getItem('accessToken') || sessionStorage.getItem('accessToken');
             if(accessToken) headers.set('Authorization', `Bearer ${accessToken}`);
             return headers;
         }
@@ -19,7 +20,7 @@ export const authAPI = createApi({
     endpoints: (builder) => ({
         registerUser: builder.mutation<{statusCode: number}, Partial<User>>({
             query: (userData) => ({
-                url: 'auth/registration',
+                url: '/registration',
                 method: 'POST',
                 body: userData
             }),
@@ -27,9 +28,10 @@ export const authAPI = createApi({
                 statusCode: 201
             })
         }),
+
         loginUser: builder.mutation<{statusCode: number, accessToken: string}, Partial<User>>({
             query: (userData) => ({
-                url: 'auth/login',
+                url: '/login',
                 method: 'POST',
                 body: userData
             }),
@@ -38,9 +40,10 @@ export const authAPI = createApi({
                 accessToken: response.accessToken,
             })
         }),
+
         checkEmail: builder.mutation<{statusCode: number}, Partial<CheckEmail>>({
             query: (emailData) => ({
-                url: 'auth/check-email',
+                url: '/check-email',
                 method: 'POST',
                 body: emailData
             }),
@@ -48,9 +51,10 @@ export const authAPI = createApi({
                 statusCode: 200
             })
         }),
+
         confirmEmail: builder.mutation<{statusCode: number}, Partial<ConfirmEmail>>({
             query: (emailData) => ({
-                url: 'auth/confirm-email',
+                url: '/confirm-email',
                 method: 'POST',
                 body: emailData
             }),
@@ -58,22 +62,24 @@ export const authAPI = createApi({
                 statusCode: 200
             })
         }),
+
         changePassword: builder.mutation<{statusCode: number}, Partial<ChangePassword>>({
             query: (passwordData) => ({
-                url: 'auth/change-password',
+                url: '/change-password',
                 method: 'POST',
                 body: passwordData
             }),
             transformResponse: () => ({
                 statusCode: 201
             })
-        })
+        }),
     })
 })
 
-// export const { useRegisterUserMutation, useLoginUserMutation } = authAPI;
-export const { useRegisterUserMutation } = authAPI;
-export const { useLoginUserMutation } = authAPI;
-export const { useCheckEmailMutation } = authAPI;
-export const { useConfirmEmailMutation } = authAPI;
-export const { useChangePasswordMutation } = authAPI;
+export const { 
+    useRegisterUserMutation, 
+    useLoginUserMutation, 
+    useCheckEmailMutation, 
+    useConfirmEmailMutation, 
+    useChangePasswordMutation,
+} = authAPI;

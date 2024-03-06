@@ -1,0 +1,11 @@
+.feedbackListWrapper{
+    height: 100%;
+    max-height: 754px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overflow-y: scroll;
+}
+
+.feedbackListWrapper::-webkit-scrollbar{
+    display: none;
+}

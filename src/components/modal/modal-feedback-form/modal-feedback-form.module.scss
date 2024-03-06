@@ -1,0 +1,22 @@
+:global{
+    .ant-rate-star-half .ant-rate-star-first, .ant-rate-star-full .ant-rate-star-second{
+        fill: #FAAD14;
+    }
+
+    .anticon .anticon-star > svg{
+        stroke: #FAAD14;
+        fill: #FAAD14;
+    }
+}
+
+.modalContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+@media screen and (max-width: 576px){
+    .modalContainer{
+        padding: 24px 16px;
+    }
+} 

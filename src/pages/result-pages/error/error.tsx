@@ -1,19 +1,18 @@
 /// <reference types="vite-plugin-svgr/client" />
 
 import React, { useEffect } from 'react';
-import classes from './error.module.scss';
 import LayoutLogin from '@components/layout-login/layout-login';
 import Fail from '../../../resources/icons/fail.svg?react';
 import MessageWindow from '@components/message-window/message-window';
 import { history } from '@redux/configure-store';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { setLoadingState } from '@redux/authUtilSlice';
-import { useRegisterUserMutation } from '@redux/APISlice';
+import { useRegisterUserMutation } from '@redux/authAPISlice';
 
 
 const Error:React.FC = () => {
     const dispatch = useAppDispatch();
-    const [registerUser, {data, isLoading, error }] = useRegisterUserMutation();
+    const [registerUser, {data, error }] = useRegisterUserMutation();
     const {userData} = useAppSelector(state => state.userData);
 
     const handleClick = () => {
@@ -29,7 +28,7 @@ const Error:React.FC = () => {
             dispatch(setLoadingState(false));
             history.push('/result/error');
         }
-    }, [data, error])
+    }, [data, error, dispatch])
 
     return (
         <LayoutLogin>

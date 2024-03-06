@@ -6,7 +6,7 @@ import LayoutLogin from '@components/layout-login/layout-login';
 import Fail from '../../../resources/icons/fail.svg?react';
 import MessageWindow from '@components/message-window/message-window';
 import { history } from '@redux/configure-store';
-import { useChangePasswordMutation } from '@redux/APISlice';
+import { useChangePasswordMutation } from '@redux/authAPISlice';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { setLoadingState } from '@redux/authUtilSlice';
 import { ROUTE_PATHS } from '../../../routes/route-paths';

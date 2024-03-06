@@ -2,7 +2,7 @@ import LayoutLogin from '@components/layout-login/layout-login';
 import classes from './change-password.module.scss';
 import { Button, Form, Input, Typography } from 'antd';
 import { ChangePassword as PasswordInputs } from 'src/interfaces/ChangePassword';
-import { useChangePasswordMutation } from '@redux/APISlice';
+import { useChangePasswordMutation } from '@redux/authAPISlice';
 import { useEffect } from 'react';
 import { history } from '@redux/configure-store';
 import { ROUTE_PATHS } from '../../routes/route-paths';

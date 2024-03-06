@@ -1,0 +1,78 @@
+:global{
+    .ant-card-body{
+        padding: 16px;
+    }
+
+    .ant-card-meta-avatar{
+        padding-right: 12px;
+    }
+
+    .anticon.anticon-star{
+        width: 16px;
+        height: 16px;
+    }
+
+    h5.ant-typography{
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 20.8px;
+        color: #262626;
+    }
+}
+
+.feedback{
+    width: 100%;
+
+    &Avatar{
+        width: 42px;
+        height: 42px;
+        margin-bottom: 4px;
+    }
+
+    &AvatarSpace{
+        width: 174px;
+    }
+
+    &Date{
+        margin-left: 8px;
+        font-size: 12px;
+        line-height: 15.6px;
+        color: #BFBFBF;
+    }
+
+    &Text{
+        font-size: 14px;
+        line-height: 18.2px;
+        color: #8C8C8C;
+    }
+
+    &Name{
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 576px){
+    :global{
+        .ant-card-meta{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ant-card-meta-avatar{
+            display: flex;
+            align-items: center;
+        }
+
+        .ant-card-meta-avatar{
+            padding-right: 12px;
+        }
+
+        .ant-avatar{
+            margin-right: 8px;
+        }
+    }
+
+    .feedbackName{
+        text-align: left;
+    }
+} 

@@ -2,15 +2,16 @@ import React, { lazy, Suspense } from 'react';
 
 import classes from './main-page.module.scss';
 import 'antd/dist/antd.css';
-// import LayoutBlock from '@components/layout/layout';
 import { Button, Card, Typography } from 'antd';
 import { CalendarOutlined, HeartFilled, IdcardOutlined } from '@ant-design/icons';
+import LayoutMainPage from '@components/layout-main-page/layout-main-page';
 const LayoutBlock = lazy(() => import('@components/layout/layout'))
 
 export const MainPage: React.FC = () => {
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <LayoutBlock>
+                <LayoutMainPage>
                 <div className={classes.cardWrapper}>
                     <Card style={{width: '100%'}} className={classes.cardDescription}>
                         С CleverFit ты сможешь:
@@ -42,6 +43,7 @@ export const MainPage: React.FC = () => {
                         </Card>
                     </div>
                 </div>
+                </LayoutMainPage>
             </LayoutBlock>               
         </Suspense>
     );

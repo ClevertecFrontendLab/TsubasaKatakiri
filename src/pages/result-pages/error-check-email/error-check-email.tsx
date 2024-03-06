@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { setLoadingState } from '@redux/authUtilSlice';
 import { ROUTE_PATHS } from '../../../routes/route-paths';
 import { useEffect } from 'react';
-import { useCheckEmailMutation } from '@redux/APISlice';
+import { useCheckEmailMutation } from '@redux/authAPISlice';
 
 const ErrorCheckEmail = () => {
     const {userEmail} = useAppSelector(state => state.authUtils);

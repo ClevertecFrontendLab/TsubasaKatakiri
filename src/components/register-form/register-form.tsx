@@ -4,7 +4,7 @@ import { Button, Form, Input } from 'antd';
 import { GooglePlusOutlined } from '@ant-design/icons';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { User } from 'src/interfaces/User';
-import { useRegisterUserMutation } from '@redux/APISlice';
+import { useRegisterUserMutation } from '@redux/authAPISlice';
 import { history } from '@redux/configure-store';
 import { setLoadingState } from '@redux/authUtilSlice';
 import { saveUserData } from '@redux/userSlice';
@@ -13,13 +13,17 @@ import { ROUTE_PATHS } from '../../routes/route-paths';
 const RegisterForm: React.FC = () => {
     const [form] = Form.useForm();
     const dispatch = useAppDispatch();
-    const [registerUser, {data, isLoading, error }] = useRegisterUserMutation();
+    const [registerUser, {data, error }] = useRegisterUserMutation();
 
 
     const onFinish = (values: User) => {
         dispatch(setLoadingState(true));
         dispatch(saveUserData({email: values.email, password: values.password}));
         registerUser({email: values.email, password: values.password})
+    }
+
+    const onGoogleLogin = () => {
+        window.location.href = 'https://marathon-api.clevertec.ru/auth/google';
     }
 
     useEffect(() => {
@@ -32,7 +36,7 @@ const RegisterForm: React.FC = () => {
                 history.push(ROUTE_PATHS.errorUserExist);
             } else history.push(ROUTE_PATHS.error);
         }
-    }, [data, error])
+    }, [data, error, dispatch])
 
     return (
          <div>
@@ -80,7 +84,7 @@ const RegisterForm: React.FC = () => {
                 </Form.Item>
                 <Button type='primary' htmlType='submit' className={classes.formButton} size='large' data-test-id='registration-submit-button'>Войти</Button>
             </Form>
-            <Button type='default' icon={<GooglePlusOutlined />} className={classes.formButton} size='large'>Регистрация через Google</Button>
+            <Button type='default' icon={<GooglePlusOutlined />} className={classes.formButton} onClick={onGoogleLogin} size='large'>Регистрация через Google</Button>
         </div>
     );
 };

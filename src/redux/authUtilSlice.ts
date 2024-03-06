@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ChangePassword } from "src/interfaces/ChangePassword";
-import { User } from "src/interfaces/User"
 
 type InitialState = {
     userEmail: string;
