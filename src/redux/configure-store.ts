@@ -4,10 +4,12 @@ import { createReduxHistoryContext } from 'redux-first-history';
 import { createBrowserHistory } from 'history';
 import { authAPI } from './authAPISlice.ts'
 import { feedbackAPI } from './feedbackAPISlice.ts'
+import { trainingAPI } from './trainingAPISlice.ts'
 import authUtilsReducer from './authUtilSlice.ts';
 import userDataReducer from './userSlice.ts';
 import feedbackDataReducer from './feedbackSlice.ts';
 import appUtilsReducer from './appUtilSlice.ts';
+import { catalogsAPI } from './catalogsAPISlice.ts';
 
 const {
         createReduxHistory,
@@ -20,6 +22,8 @@ export const store = configureStore({
         router: routerReducer,
         [authAPI.reducerPath]: authAPI.reducer,
         [feedbackAPI.reducerPath]: feedbackAPI.reducer,
+        [trainingAPI.reducerPath]: trainingAPI.reducer,
+        [catalogsAPI.reducerPath]: catalogsAPI.reducer,
         authUtils: authUtilsReducer,
         userData: userDataReducer,
         feedbackData: feedbackDataReducer,

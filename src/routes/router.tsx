@@ -15,6 +15,7 @@ import ErrorCheckEmail from '@pages/result-pages/error-check-email/error-check-e
 import FeedbackPage from '@pages/feedback-page/feedback-page';
 import { useEffect } from 'react';
 import { history } from '@redux/configure-store';
+import CalendarPage from '@pages/calendar-page/calendar-page';
 
 
 const Router = () => {
@@ -63,6 +64,7 @@ const Router = () => {
             <Route path={ROUTE_PATHS.errorCheckEmailNoExist} element={<ErrorCheckEmailNoExist/>}/>
             <Route path={ROUTE_PATHS.errorCheckEmail} element={<ErrorCheckEmail/>}/>
             <Route path={ROUTE_PATHS.feedbacks} element={<FeedbackPage />} />
+            <Route path={ROUTE_PATHS.calendar} element={<CalendarPage />} />
         </Routes>
     );
 };

@@ -8,6 +8,7 @@ import { useWindowWidth } from '@hooks/use-window-width';
 import Sider from 'antd/lib/layout/Sider';
 import { Button, Menu } from 'antd';
 import { history } from '@redux/configure-store';
+import { ROUTE_PATHS } from '../../routes/route-paths';
 
 interface IProps{
     isOpen: boolean,
@@ -25,6 +26,10 @@ const Sidebar: React.FC<IProps> = ({isOpen, handleOpening} : IProps) => {
             sessionStorage.removeItem('accessToken');
             history.push('/auth');
         }
+    }
+
+    const handleCalendar = () => {
+        history.push(ROUTE_PATHS.calendar);
     }
 
     const menuItems = [

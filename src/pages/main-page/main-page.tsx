@@ -5,9 +5,15 @@ import 'antd/dist/antd.css';
 import { Button, Card, Typography } from 'antd';
 import { CalendarOutlined, HeartFilled, IdcardOutlined } from '@ant-design/icons';
 import LayoutMainPage from '@components/layout-main-page/layout-main-page';
+import { history } from '@redux/configure-store';
+import { ROUTE_PATHS } from '../../routes/route-paths';
 const LayoutBlock = lazy(() => import('@components/layout/layout'))
 
 export const MainPage: React.FC = () => {
+    const handleCalendar = () => {
+        history.push(ROUTE_PATHS.calendar);
+    }
+
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <LayoutBlock>
@@ -32,7 +38,7 @@ export const MainPage: React.FC = () => {
                             </Button>
                         </Card>
                         <Card title="Назначить календарь" size='small' style={{width: '100%', fontSize: 16}} className={classes.card}>
-                            <Button type='link' icon={<CalendarOutlined />} style={{width: '100%', color: '#2F54EB'}}>
+                            <Button type='link' icon={<CalendarOutlined />} style={{width: '100%', color: '#2F54EB'}} onClick={handleCalendar}>
                                 Календарь
                             </Button>
                         </Card>
