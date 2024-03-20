@@ -58,7 +58,7 @@ const CalendarPage: React.FC = () => {
 
     const isMobile = useWindowWidth();
 
-    
+
 
 
     useEffect(() => {
@@ -165,9 +165,10 @@ const CalendarPage: React.FC = () => {
     const dateCellRender= (moment: Moment) => {
         const cellDate = moment.format('YYYY-MM-DD');
         const listData = filterTrainings(trainingsAll, cellDate);
+        if(isMobile) return null;
         return (
             <>
-                <div className={classes.eventsContainer} onClick={(event) => onSelect(moment, event)}/>
+                <div id={'cell'} className={classes.eventsContainer} onClick={(event) => onSelect(moment, event)}/>
                 <ul className={classes.events}>
                     {listData && listData.map((item, index) => (
                         <li key={index}>

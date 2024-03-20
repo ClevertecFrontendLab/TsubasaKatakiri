@@ -27,9 +27,9 @@ const ExcerciseDrawer: React.FC<IProps> = ({isOpen, setIsOpen, date, trainingOpt
     const dispatch = useAppDispatch();
     const [dataOfTraining, setDataOfTraining] = useState<Excercise[]>([{
                 name: '',
-                approaches: undefined,
-                weight: undefined,
-                replays: undefined,
+                approaches: 0,
+                weight: 0,
+                replays: 0,
                 isImplementation: false
             }]);
     const [isChecked, setIsChecked] = useState<boolean[]>([false])
@@ -43,9 +43,9 @@ const ExcerciseDrawer: React.FC<IProps> = ({isOpen, setIsOpen, date, trainingOpt
         if(!trainings){
             const emptyExcercise: Excercise = {
                 name: '',
-                approaches: undefined,
-                weight: undefined,
-                replays: undefined,
+                approaches: 0,
+                weight: 0,
+                replays: 0,
                 isImplementation: false
             }
             setDataOfTraining([emptyExcercise])

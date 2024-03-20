@@ -1,8 +1,8 @@
 export type Training = {
     _id?: string,
     name: string,
-    date: number | string,
-    isImplementation?: boolean,
+    date: string | number,
+    isImplementation: boolean,
     userId?: string,
     parameters?: TrainingParameters,
     exercises: Excercise[]
@@ -11,9 +11,9 @@ export type Training = {
 export type Excercise = {
     _id?: string,
     name: string,
-    replays: number | undefined,
-    weight: number | undefined,
-    approaches: number | undefined,
+    replays: number,
+    weight: number,
+    approaches: number,
     isImplementation: boolean
 }
 
@@ -21,7 +21,7 @@ export type TrainingParameters = {
     repeat: false,
     period: number,
     jointTraining: false,
-    participants: string[]
+    participants: []
 }
 
 
@@ -35,9 +35,9 @@ export type TrainingList = {
 
 export type DataTraining = {
     name: string,
-    approaches: number | undefined,
-    weight: number | undefined,
-    replays: number | undefined,
+    approaches: number,
+    weight: number,
+    replays: number,
     isImplementation: boolean,
 }
 

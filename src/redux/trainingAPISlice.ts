@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Training, TrainingPutQuery } from "../types/training";
+import { Training } from "../types/training";
 
 
 export const trainingAPI = createApi({
