@@ -38,7 +38,6 @@ interface IProps{
 const ModalAddTraining: React.FC<IProps> = ({isOpen, setIsOpen, date, setOpenDrawer, trainingType, setTrainingType, boundaries, cellTrainingList, setCellTrainingList, setIsSaveFail, setIsEditMode, isOld, setIsOld} : IProps) => {
     const [addMode, setAddMode] = useState<boolean>(false);
     const {trainingCatalog} = useAppSelector(state => state.catalogData);
-    const [trainingMode, setTrainingMode] = useState<string | null>(null);
     const [trainingList, setTrainingList] = useState<TrainingList[]>([]);
     const [posX, setPosX] = useState<number>(0);
     const [posY, setPosY] = useState<number>(0);
@@ -66,6 +65,7 @@ const ModalAddTraining: React.FC<IProps> = ({isOpen, setIsOpen, date, setOpenDra
     const onSave = () => {
         console.log(editableTraining);
         if(trainings){
+            console.log(isOld);
             const saveObject: Training = {
                 name: trainings.type,
                 date: trainings.date.split('.').reverse().join('-').concat('T12:00:00.000Z'),
@@ -75,9 +75,8 @@ const ModalAddTraining: React.FC<IProps> = ({isOpen, setIsOpen, date, setOpenDra
             setLoading(true);
             if(editableTraining){
                 saveObject._id = editableTraining._id;
-                saveObject.isImplementation = true;
-                console.log(saveObject);
-                editTraining(saveObject)
+                // saveObject.isImplementation = true;
+                editTraining(saveObject);
             } else {
                 createTraining(saveObject);
             }
@@ -85,20 +84,42 @@ const ModalAddTraining: React.FC<IProps> = ({isOpen, setIsOpen, date, setOpenDra
     }
 
     useLayoutEffect(() => {
-        if(data || editData){
+        if(data){
             console.log(data);
             setIsEditMode(false);
             setLoading(false);
             getTrainings();
-            if(data) setCellTrainingList([...cellTrainingList, data]);
-            if(editableTraining) setEditableTraining(null);
+            setCellTrainingList([...cellTrainingList, data]);
             setAddMode(false);
-        }else if (error || editError) {
+        }else if (error) {
+            console.log(error);
             setLoading(false);
             setAddMode(false);
             setIsSaveFail(true);
         }
-    }, [data, editData, error, editError, createTraining])
+    }, [data, error])
+
+    useLayoutEffect(() => {
+        if(editData){
+            console.log(editData);
+            setIsEditMode(false);
+            setLoading(false);
+            getTrainings();
+            const filteredList = cellTrainingList.filter(item => item.name !== editData?.name)
+            const filteredList2 = [...filteredList, editData];
+            console.log(filteredList2);
+            setCellTrainingList(filteredList2);
+            setEditableTraining(null);
+            setAddMode(false);
+        }else if (editError) {
+            console.log(editError);
+            setLoading(false);
+            setAddMode(false);
+            setIsSaveFail(true);
+        }
+    }, [editData, editError])
+
+    console.log(cellTrainingList);
 
     useEffect(() => {
         if(TrainingData){
@@ -288,7 +309,7 @@ const ModalAddTraining: React.FC<IProps> = ({isOpen, setIsOpen, date, setOpenDra
                                 ? <div className={classes.excercises}>
                                     <ul className={classes.excercisesList}>
                                         {trainings.excercises.map((item, index) => {
-                                            return <li className={classes.excercisesOption}>
+                                            return <li className={classes.excercisesOption} key={index}>
                                                 <Typography.Text style={{fontSize: '14px', lineHeight: '18.2px', fontWeight: 400, margin: 0, color: '#8C8C8C'}}>{item.name}</Typography.Text>
                                                 <Button icon={<EditOutlined/>} className={classes.trainingsOptionButton} disabled={item.isImplementation} onClick={() => handleEditExcercise(index)} data-test-id={`modal-update-training-edit-button${index}`}/>
                                             </li>
@@ -306,9 +327,9 @@ const ModalAddTraining: React.FC<IProps> = ({isOpen, setIsOpen, date, setOpenDra
                                 ? <div className={classes.trainings}>
                                     <ul className={classes.trainingsList}>
                                         {cellTrainingList.map((item, index) => {
-                                            return <li className={classes.trainingsOption}>
+                                            return <li className={classes.trainingsOption} key={index}>
                                                 <Badge color={colorizeBadge(item.name)} text={item.name}/>
-                                                <Button icon={<EditOutlined/>} className={classes.trainingsOptionButton} disabled={item.isImplementation} onClick={() => handleEditTraining(item.name)} data-test-id={`modal-update-training-edit-button${index}`}/>
+                                                <Button icon={<EditOutlined disabled={item.isImplementation}/>} className={classes.trainingsOptionButton} disabled={item.isImplementation} onClick={() => handleEditTraining(item.name)} data-test-id={`modal-update-training-edit-button${index}`}/>
                                             </li>
                                         })}
                                         

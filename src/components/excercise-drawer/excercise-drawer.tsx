@@ -56,12 +56,14 @@ const ExcerciseDrawer: React.FC<IProps> = ({isOpen, setIsOpen, date, trainingOpt
     const onClose = () => {
         const filteredList: DataTraining[] = dataOfTraining.filter(item => item.name !== '');
         if(filteredList.length > 0 || (trainings && trainings.isImplementation !== true)){
+            console.log('Filtered from drawer: ', isOld);
             const newDataOfTraining: TrainingTypeData = {
                 type: trainingOption,
                 date: date,
-                excercises: filteredList,
+                excercises: filteredList.map(item => ({...item, isImplementation: isOld})),
                 isImplementation: isOld,
             } 
+            console.log('Data from drawer: ', isOld, newDataOfTraining);
             dispatch(setTrainingCreateData(newDataOfTraining));
             setDataOfTraining([]);
         }
