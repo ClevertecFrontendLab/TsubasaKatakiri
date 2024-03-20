@@ -1,7 +1,7 @@
 export type Training = {
     _id?: string,
     name: string,
-    date: string,
+    date: number | string,
     isImplementation?: boolean,
     userId?: string,
     parameters?: TrainingParameters,
