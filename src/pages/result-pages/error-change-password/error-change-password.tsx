@@ -1,7 +1,6 @@
 /// <reference types="vite-plugin-svgr/client" />
 
-import React, { useEffect } from 'react';
-import classes from './error-change-password.module.scss'
+import { useEffect } from 'react';
 import LayoutLogin from '@components/layout-login/layout-login';
 import Fail from '../../../resources/icons/fail.svg?react';
 import MessageWindow from '@components/message-window/message-window';

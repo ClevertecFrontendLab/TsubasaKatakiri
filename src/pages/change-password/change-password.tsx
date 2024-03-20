@@ -68,7 +68,9 @@ const ChangePassword = () => {
                     >
                         <Input.Password placeholder='Повторите пароль' size='large' data-test-id='change-confirm-password'/>
                     </Form.Item>
-                    <Button type='primary' size='large' htmlType='submit' className={classes.formButton} data-test-id='change-submit-button'>Сохранить</Button>
+                    <Button type='primary' size='large' htmlType='submit' className={classes.formButton} data-test-id='change-submit-button'>
+                        Сохранить
+                    </Button>
                 </Form>
             </div>
         </LayoutLogin>

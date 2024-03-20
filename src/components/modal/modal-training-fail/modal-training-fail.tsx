@@ -1,5 +1,4 @@
 import React from 'react';
-import classes from './modal-training-fail.module.scss'
 import { Button, Modal, Space, Typography } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import FailRed from '../../../resources/icons/fail-circle-red.svg?react'
@@ -45,13 +44,15 @@ const ModalTrainingFail: React.FC<IProps> = ({isOpened, setIsOpened, saveMode, o
                 <Space direction='horizontal' style={{alignItems: 'flex-start', columnGap: '16px'}}>
                     {saveMode ? <FailRed/> : <FailBlue/>}
                     <Space direction='vertical' style={{alignItems: 'flex-start', rowGap: '8px'}}>
-                        <Typography.Title level={5} style={{fontWeight: 400, fontSize: '16px', lineHeight: '20.4px'}} data-test-id='modal-error-user-training-title'>
+                        <Typography.Title level={5} style={{fontWeight: 400, fontSize: '16px', lineHeight: '20.4px'}} 
+                        data-test-id='modal-error-user-training-title'>
                             {saveMode 
                                 ? 'При сохранении данных произошла ошибка'
                                 : 'При открытии данных произошла ошибка'
                             }
                         </Typography.Title>
-                        <Typography.Text style={{fontWeight: 400, fontSize: '14px', lineHeight: '18.2px'}} data-test-id='modal-error-user-training-subtitle'>
+                        <Typography.Text style={{fontWeight: 400, fontSize: '14px', lineHeight: '18.2px'}} 
+                        data-test-id='modal-error-user-training-subtitle'>
                             {saveMode 
                                 ? 'Придётся попробовать ещё раз'
                                 : 'Попробуйте ещё раз.'

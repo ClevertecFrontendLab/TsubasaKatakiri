@@ -8,10 +8,14 @@ const HeaderMain = () => {
 
     return (
         <Layout.Header className={classes.headerInfo} style={{paddingTop: 0}}>
-            <Typography.Title className={classes.headerText}>Приветствуем тебя в CleverFit - приложении, которое поможет тебе добиться своей мечты!</Typography.Title>
+            <Typography.Title className={classes.headerText}>
+                Приветствуем тебя в CleverFit - приложении, которое поможет тебе добиться своей мечты!
+                </Typography.Title>
             {!isMobile
-                ? <Button className={classes.headerSettings} type='text' icon={<SettingOutlined />}>{!isMobile && 'Настройки'}</Button>
-                : <Button className={classes.headerSettings} type='default' shape='circle' icon={<SettingOutlined />}/>
+                ?   <Button className={classes.headerSettings} type='text' icon={<SettingOutlined />}>
+                        {!isMobile && 'Настройки'}
+                    </Button>
+                :   <Button className={classes.headerSettings} type='default' shape='circle' icon={<SettingOutlined />}/>
             }
         </Layout.Header>
     );

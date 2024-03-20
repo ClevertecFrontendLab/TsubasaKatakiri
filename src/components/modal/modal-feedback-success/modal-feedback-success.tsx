@@ -23,7 +23,9 @@ const ModalFeedbackSuccess: React.FC<IProps> = ({isOpen, setIsOpen}: IProps) => 
         >
             <div className={classes.modalContainer}>
                 <SuccessIcon/>
-                <Typography.Title style={{fontSize: '24px', lineHeight: '31.2px', fontWeight: 500, margin: 0}}>Отзыв успешно опубликован</Typography.Title>
+                <Typography.Title style={{fontSize: '24px', lineHeight: '31.2px', fontWeight: 500, margin: 0}}>
+                    Отзыв успешно опубликован
+                </Typography.Title>
                 <Button type='primary' size='large' onClick={handleClose}>Отлично</Button>
             </div>
         </Modal>

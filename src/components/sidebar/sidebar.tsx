@@ -92,7 +92,11 @@ const Sidebar: React.FC<IProps> = ({isOpen, handleOpening} : IProps) => {
             style={{zIndex: 999}}
         >
             <ModalFeedbackLoadFail isOpen={isFailOpen} setIsOpen={setIsFailOpen}/>
-            <div data-test-id={isMobile ? 'sider-switch-mobile' : 'sider-switch'} className={`${classes.unfold} ${isMobile && classes.unfoldMobile}`} onClick={handleOpening}>
+            <div 
+                data-test-id={isMobile ? 'sider-switch-mobile' : 'sider-switch'} 
+                className={`${classes.unfold} ${isMobile && classes.unfoldMobile}`} 
+                onClick={handleOpening}
+            >
                 {isOpen ? <MenuFoldOutlined /> :<MenuUnfoldOutlined />}
             </div>
             <div className={`${classes.asideWrapper} ${isMobile && classes.asideWrapperMobile}`}>

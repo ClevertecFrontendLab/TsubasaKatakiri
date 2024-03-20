@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classes from './calendar-page.module.scss';
 import LayoutBlock from '@components/layout/layout';
-import { Badge, Button, Calendar, Modal } from 'antd';
-import { CalendarMode } from 'antd/lib/calendar/generateCalendar';
+import { Badge, Button, Calendar } from 'antd';
 import type { Moment } from 'moment';
 import moment from 'moment';
 import 'moment/locale/ru';
@@ -17,12 +16,11 @@ import ModalAddTraining from '@components/modal/modal-add-training/modal-add-tra
 import ExcersizeDrawer from '@components/excercise-drawer/excercise-drawer';
 import { dateTransform } from '../../helpers/date-helpers';
 import { updateTrainingCatalog } from '@redux/catalogsSlice';
-import { TrainingList } from '../../types/training-list';
 import { colorizeBadge } from '../../helpers/badge-helpers';
 import { Boundaries } from '../../types/boundaries';
 import { Training } from '../../types/training';
 import { setIsLoaded, setTrainingData } from '@redux/trainingsSlice';
-import { CloseOutlined, SettingOutlined } from '@ant-design/icons';
+import { SettingOutlined } from '@ant-design/icons';
 import ModalTrainingFail from '@components/modal/modal-training-fail/modal-training-fail';
 import { useWindowWidth } from '@hooks/use-window-width';
 import './calendar-page.css';
@@ -37,8 +35,12 @@ moment.updateLocale('ru', {
 const CalendarPage: React.FC = () => {
     const {trainingsAll, isLoaded} = useAppSelector(state => state.trainingData);
     const dispatch = useAppDispatch();
-    const [getTrainings, {data, isLoading, error}] = useLazyGetTrainingsQuery();
-    const [getTrainingsList, {data: dataList, isLoading: isLoadingList, error: errorList}] = useLazyGetTrainingsListQuery();
+    const [getTrainings, {data, error}] = useLazyGetTrainingsQuery();
+    const [getTrainingsList, {
+        data: dataList, 
+        isLoading: isLoadingList, 
+        error: errorList
+    }] = useLazyGetTrainingsListQuery();
     const [isFailOpen, setIsFailOpen] = useState<boolean>(false);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [currentDate, setCurrentDate] = useState<Date | null>(null)
@@ -59,11 +61,8 @@ const CalendarPage: React.FC = () => {
     const isMobile = useWindowWidth();
 
 
-
-
     useEffect(() => {
         if(!isLoaded){
-            console.log(isLoaded);
             dispatch(setLoadingApp(true));
             getTrainings();
         }
@@ -72,12 +71,10 @@ const CalendarPage: React.FC = () => {
     useEffect(() => {
         if(!isLoaded){
             if(data){
-                console.log(data);
                 dispatch(setLoadingApp(false));
                 dispatch(setTrainingData(data));
                 dispatch(setIsLoaded(true));
             } else if(error){
-                console.log(error);
                 dispatch(setLoadingApp(false));
                 if(('status' in error) && (error.status === 403)){
                     history.push('/auth');
@@ -112,7 +109,6 @@ const CalendarPage: React.FC = () => {
     }
 
 
-    //find trainings
     const filterTrainings = (data: Training[], dateCell: string) => {
         return data.filter((training) => {
             if (typeof training.date === 'number') {
@@ -126,7 +122,6 @@ const CalendarPage: React.FC = () => {
     }
 
 
-    //select cell
     const onSelect = (value: Moment, event: React.MouseEvent<HTMLElement>) => {
         event.stopPropagation();
         const bounding = event.currentTarget.getBoundingClientRect();
@@ -151,13 +146,13 @@ const CalendarPage: React.FC = () => {
     }
 
 
-    //rendering calendar cells
     const dateFullCellRender = (moment: Moment) => {
         const cellDate = moment.format('YYYY-MM-DD');
         const listData = filterTrainings(trainingsAll, cellDate);
         const date = moment.date();
         return (
-            <div className={`${classes.eventsContainer} ${classes.fullCellRender} ${listData.length > 0 ? classes.cellTrainingExist : ''}`} onClick={(event) => onSelect(moment, event)}>
+            <div className={`${classes.eventsContainer} ${classes.fullCellRender} 
+            ${listData.length > 0 ? classes.cellTrainingExist : ''}`} onClick={(event) => onSelect(moment, event)}>
                 {date < 10 ? date : `${date}`}
             </div>
         );
@@ -186,15 +181,52 @@ const CalendarPage: React.FC = () => {
             <div className={classes.calendarWrapper}>
                 <div className={classes.settingsBar}>
                     {!isMobile
-                        ? <Button className={classes.headerSettings} type='text' icon={<SettingOutlined />}>{!isMobile && 'Настройки'}</Button>
+                        ? <Button className={classes.headerSettings} type='text' icon={<SettingOutlined />}>
+                            {!isMobile && 'Настройки'}
+                        </Button>
                         : <Button className={classes.headerSettings} type='default' shape='circle' icon={<SettingOutlined />}/>
                     }
                 </div>
-                <ModalFeedbackLoadFail isOpen={isFailOpen} setIsOpen={setIsFailOpen}/>
-                <ModalTrainingFail isOpened={isLoadFail} setIsOpened={setIsLoadFail} saveMode={false} onOk={onOkListLoadFail}/>
-                <ModalTrainingFail isOpened={isSaveFail} setIsOpened={setIsSaveFail} saveMode={true} onOk={onOkTrainingSaveFail}/>
-                <ModalAddTraining isOpen={isModalOpen} setIsOpen={setIsModalOpen} date={currentDate} setOpenDrawer={setOpenDrawer} trainingType={trainingOption} setTrainingType={setTrainingOption} boundaries={boundariesObject} cellTrainingList={activeCellTrainingList} setCellTrainingList={setActiveCellTrainingList} isEditMode={isEditMode} setIsEditMode={setIsEditMode} isOld={isOld} setIsOld={setIsOld} setIsSaveFail={setIsSaveFail}/>
-                <ExcersizeDrawer isOpen={openDrawer} setIsOpen={setOpenDrawer} date={dateTransform(currentDate)} trainingOption={trainingOption} isEditMode={isEditMode} isOld={isOld}/>
+                <ModalFeedbackLoadFail 
+                    isOpen={isFailOpen} 
+                    setIsOpen={setIsFailOpen}
+                />
+                <ModalTrainingFail 
+                    isOpened={isLoadFail} 
+                    setIsOpened={setIsLoadFail} 
+                    saveMode={false} 
+                    onOk={onOkListLoadFail}
+                />
+                <ModalTrainingFail 
+                    isOpened={isSaveFail} 
+                    setIsOpened={setIsSaveFail} 
+                    saveMode={true} 
+                    onOk={onOkTrainingSaveFail}
+                />
+                <ModalAddTraining 
+                    isOpen={isModalOpen} 
+                    setIsOpen={setIsModalOpen} 
+                    date={currentDate} 
+                    setOpenDrawer={setOpenDrawer} 
+                    trainingType={trainingOption} 
+                    setTrainingType={setTrainingOption} 
+                    boundaries={boundariesObject} 
+                    cellTrainingList={activeCellTrainingList} 
+                    setCellTrainingList={setActiveCellTrainingList} 
+                    isEditMode={isEditMode} 
+                    setIsEditMode={setIsEditMode} 
+                    isOld={isOld} 
+                    setIsOld={setIsOld} 
+                    setIsSaveFail={setIsSaveFail}
+                />
+                <ExcersizeDrawer 
+                    isOpen={openDrawer} 
+                    setIsOpen={setOpenDrawer} 
+                    date={dateTransform(currentDate)} 
+                    trainingOption={trainingOption} 
+                    isEditMode={isEditMode} 
+                    isOld={isOld}
+                />
                 <Calendar
                     locale={ru}
                     dateFullCellRender={isMobile ? dateFullCellRender : undefined}

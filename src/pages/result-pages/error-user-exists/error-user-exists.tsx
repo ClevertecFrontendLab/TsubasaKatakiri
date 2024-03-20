@@ -1,7 +1,5 @@
 /// <reference types="vite-plugin-svgr/client" />
 
-import React from 'react';
-import classes from './error-user-exists.module.scss'
 import LayoutLogin from '@components/layout-login/layout-login';
 import MessageWindow from '@components/message-window/message-window';
 import Fail from '../../../resources/icons/fail.svg?react';

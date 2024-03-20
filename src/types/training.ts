@@ -49,10 +49,3 @@ export type TrainingTypeData = {
     excercises: DataTraining[],
     isImplementation?: boolean,
 }
-
-
-
-export type TrainingPutQuery = {
-    id: string,
-    body: Training
-}

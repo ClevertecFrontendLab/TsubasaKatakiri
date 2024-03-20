@@ -17,7 +17,14 @@ const FeedbackModule: React.FC = () => {
                 split={false}
                 renderItem={item => (
                     <List.Item>
-                        <FeedbackCard createdAt={item.createdAt} fullName={item.fullName} id={item.id} imageSrc={item.imageSrc} message={item.message} rating={item.rating}/>
+                        <FeedbackCard 
+                            createdAt={item.createdAt} 
+                            fullName={item.fullName} 
+                            id={item.id} 
+                            imageSrc={item.imageSrc} 
+                            message={item.message} 
+                            rating={item.rating}
+                        />
                     </List.Item>
                 )}
             />

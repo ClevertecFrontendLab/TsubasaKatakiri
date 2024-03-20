@@ -1,12 +1,9 @@
-import Footer from '@components/footer/footer';
 import Header from '@components/header/header';
 import Sidebar from '@components/sidebar/sidebar';
 import React, { ReactNode, useEffect, useState } from 'react';
 import classes from './layout.module.scss';
 import { Layout } from 'antd';
 import { useWindowWidth } from '@hooks/use-window-width';
-import { useNavigate } from 'react-router-dom';
-import { ROUTE_PATHS } from '../../routes/route-paths';
 import { useAppSelector } from '@hooks/typed-react-redux-hooks';
 import Loader from '@components/loader/loader';
 

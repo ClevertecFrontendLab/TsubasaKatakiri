@@ -1,9 +1,7 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { Input, InputNumber, Space, Typography } from 'antd';
-import { DataTraining, Training } from '../../types/training';
+import { DataTraining } from '../../types/training';
 import Checkbox, { CheckboxChangeEvent } from 'antd/lib/checkbox';
-
-// import classes from './excercise-inputs.module.scss';
 
 
 interface IProps{
@@ -16,7 +14,9 @@ interface IProps{
 }
 
 
-const ExcerciseInputs: React.FC<IProps> = ({index, dataTraining, setDataTraining, isEditMode, isChecked, setIsChecked}: IProps) => {
+const ExcerciseInputs: React.FC<IProps> = ({
+    index, dataTraining, setDataTraining, isEditMode, isChecked, setIsChecked
+}: IProps) => {
     const [name, setName] = useState<string>(dataTraining[index].name || '');
     const [approaches, setApproaches] = useState<number>(dataTraining[index].approaches || 0);
     const [weight, setWeight] = useState<number>(dataTraining[index].weight || 0);
@@ -57,14 +57,29 @@ const ExcerciseInputs: React.FC<IProps> = ({index, dataTraining, setDataTraining
                 size='small'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                addonAfter={isEditMode && (<Checkbox onChange={handleCheck} checked={isChecked[index]} data-test-id={`modal-drawer-right-checkbox-exercise${index}`}/>)}
+                addonAfter={isEditMode && (
+                    <Checkbox 
+                    onChange={handleCheck} 
+                    checked={isChecked[index]} 
+                    data-test-id={`modal-drawer-right-checkbox-exercise${index}`}/>
+                )}
                 data-test-id={`modal-drawer-right-input-exercise${index}`}
             />
 
             <Space direction='horizontal' style={{columnGap: '32px', width: '100%', alignItems: 'flex-end'}}>
 
                 <Space direction='vertical'>
-                    <Typography.Text style={{display: 'block', color: '#262626', backgroundColor: '#F0F0F0', marginBottom: '0', textAlign: 'left', padding: '3.5px 8px'}}>Подходы</Typography.Text>
+                    <Typography.Text 
+                        style={{
+                            display: 'block', 
+                            color: '#262626', 
+                            backgroundColor: '#F0F0F0', 
+                            marginBottom: '0', 
+                            textAlign: 'left', 
+                            padding: '3.5px 8px'
+                        }}>
+                        Подходы
+                    </Typography.Text>
                     <InputNumber
                         placeholder={'1'}
                         min={0}
@@ -79,7 +94,18 @@ const ExcerciseInputs: React.FC<IProps> = ({index, dataTraining, setDataTraining
 
                 <Space direction='horizontal' style={{alignItems: 'flex-end'}}>
                     <Space direction='vertical' style={{width: '89px'}}>
-                        <Typography.Text style={{display: 'block', color: '#262626', backgroundColor: '#F0F0F0', marginBottom: '0', textAlign: 'left', padding: '3.5px 8px'}}>Вес, кг</Typography.Text>
+                        <Typography.Text 
+                            style={{
+                                display: 'block', 
+                                color: '#262626', 
+                                backgroundColor: '#F0F0F0', 
+                                marginBottom: '0', 
+                                textAlign: 'left', 
+                                padding: '3.5px 8px'
+                            }}
+                        >
+                            Вес, кг
+                        </Typography.Text>
                         <InputNumber
                             placeholder={'0'}
                             min={0}
@@ -92,7 +118,19 @@ const ExcerciseInputs: React.FC<IProps> = ({index, dataTraining, setDataTraining
                     </Space>
                     x
                     <Space direction='vertical'>
-                        <Typography.Text style={{display: 'block', width:'92px', color: '#262626', backgroundColor: '#F0F0F0', marginBottom: '0', textAlign: 'left', padding: '3.5px 8px'}}>Количество</Typography.Text>
+                        <Typography.Text 
+                            style={{
+                                display: 'block', 
+                                width:'92px', 
+                                color: '#262626', 
+                                backgroundColor: '#F0F0F0', 
+                                marginBottom: '0', 
+                                textAlign: 'left', 
+                                padding: '3.5px 8px'
+                            }}
+                        >
+                            Количество
+                        </Typography.Text>
                         <InputNumber
                             placeholder={'3'}
                             min={0}

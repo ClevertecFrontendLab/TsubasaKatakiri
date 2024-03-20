@@ -10,9 +10,7 @@ import { ROUTE_PATHS } from '../../routes/route-paths';
 import { setLoadingApp } from '@redux/appUtilSlice';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { useLazyGetTrainingsQuery } from '@redux/trainingAPISlice';
-import { useLazyGetTrainingsListQuery } from '@redux/catalogsAPISlice';
 import { setIsLoaded, setTrainingData } from '@redux/trainingsSlice';
-import { updateTrainingCatalog } from '@redux/catalogsSlice';
 import ModalFeedbackLoadFail from '@components/modal/modal-feedback-load-fail/modal-feedback-load-fail';
 const LayoutBlock = lazy(() => import('@components/layout/layout'))
 
@@ -34,7 +32,6 @@ export const MainPage: React.FC = () => {
             dispatch(setLoadingApp(false));
             history.push(ROUTE_PATHS.calendar);
         } else if(error){
-            console.log(error);
             dispatch(setLoadingApp(false));
             if(('status' in error) && (error.status === 403)){
                 history.push('/auth');
@@ -42,17 +39,6 @@ export const MainPage: React.FC = () => {
             else setIsFailOpen(true);
         }
     }, [data, isLoading, error, dispatch])
-
-    // useEffect(() => {
-    //     if(dataList){
-    //         dispatch(updateTrainingCatalog(dataList));
-    //         dispatch(setLoadingApp(false));
-    //     } else if(errorList){
-    //         dispatch(setLoadingApp(false));
-    //         onListLoadFail()
-    //     }
-    // }, [dataList, isLoadingList, errorList, dispatch])
-
 
     return (
         <Suspense fallback={<div>Loading...</div>}>
@@ -70,7 +56,9 @@ export const MainPage: React.FC = () => {
                         </ul>
                     </Card>
                     <Card style={{width: '100%'}}>
-                        <Typography.Title level={4} style={{fontWeight: 500, fontSize: '20px', lineHeight: '26px', marginBottom: 0}}>CleverFit - это не просто приложение, а твой личный помощник в мире фитнеса. Не откладывай на завтра — начни тренироваться уже сегодня!</Typography.Title>
+                        <Typography.Title level={4} style={{fontWeight: 500, fontSize: '20px', lineHeight: '26px', marginBottom: 0}}>
+                            CleverFit - это не просто приложение, а твой личный помощник в мире фитнеса. Не откладывай на завтра — начни тренироваться уже сегодня!
+                        </Typography.Title>
                     </Card>
                     <div className={classes.cardWrapperHorizontal}>
                         <Card title="Расписать тренировки" size='small' style={{width: '100%', fontSize: 16}} className={classes.card}>
@@ -79,7 +67,8 @@ export const MainPage: React.FC = () => {
                             </Button>
                         </Card>
                         <Card title="Назначить календарь" size='small' style={{width: '100%', fontSize: 16}} className={classes.card}>
-                            <Button type='link' icon={<CalendarOutlined />} style={{width: '100%', color: '#2F54EB'}} onClick={handleCalendar} data-test-id='menu-button-calendar'>
+                            <Button type='link' icon={<CalendarOutlined />} style={{width: '100%', color: '#2F54EB'}} 
+                            onClick={handleCalendar} data-test-id='menu-button-calendar'>
                                 Календарь
                             </Button>
                         </Card>

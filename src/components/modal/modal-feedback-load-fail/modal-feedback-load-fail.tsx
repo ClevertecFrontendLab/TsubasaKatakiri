@@ -30,7 +30,9 @@ const ModalFeedbackLoadFail : React.FC<IProps> = ({isOpen, setIsOpen}: IProps) =
             <div className={classes.modalContainer}>
                 <FailSplash/>
                 <div className={classes.modalText}>
-                    <Typography.Title style={{fontSize: '24px', lineHeight: '31.2px', fontWeight: 500, margin: 0}}>Что-то пошло не так</Typography.Title>
+                    <Typography.Title style={{fontSize: '24px', lineHeight: '31.2px', fontWeight: 500, margin: 0}}>
+                        Что-то пошло не так
+                    </Typography.Title>
                     <Typography.Text style={{fontSize: '14px', lineHeight: '18.2px', fontWeight: 400, margin: 0, color: '#8C8C8C'}}>
                         {isMobile ? <>Произошла ошибка, <>{isMobile && <br/>}</>попробуйте еще раз.</> : 'Произошла ошибка, попробуйте ещё раз.'}
                     </Typography.Text>
