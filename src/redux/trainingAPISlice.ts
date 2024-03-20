@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Training, TrainingPutQuery } from "src/interfaces/Training";
+import { Training, TrainingPutQuery } from "../types/training";
 
 
 export const trainingAPI = createApi({
@@ -21,24 +21,20 @@ export const trainingAPI = createApi({
             }),
         }),
 
-        createTraining: builder.mutation<{statusCode: number}, Partial<Training>>({
+        createTraining: builder.mutation<Training, Partial<Training>>({
             query: (body) => ({
                 url: '/training',
                 method: 'POST',
                 body
             }),
-            transformResponse: () => ({
-                statusCode: 201
-            })
         }),
 
-        editTraining: builder.mutation<Training, Partial<TrainingPutQuery>>({
-            query(data) {
-              const { id, ...body } = data
+        editTraining: builder.mutation<Training, Partial<Training>>({
+            query(body) {
               return {
-                url: `training/${id}`,
+                url: `training/${body._id}`,
                 method: 'PUT',
-                body,
+                body: body
               }
             },
           }),

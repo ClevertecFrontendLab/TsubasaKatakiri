@@ -19,6 +19,10 @@ const LayoutBlock: React.FC<IProps> = ({children} : IProps) => {
     const isMobile = useWindowWidth();
     const {isLoading} = useAppSelector(state => state.appUtils);
 
+    useEffect(() => {
+        if(isMobile) setIsOpen(false);
+    }, [isMobile])
+
     const handleOpening = () => {
         setIsOpen(prev => !prev);
     }
@@ -32,7 +36,6 @@ const LayoutBlock: React.FC<IProps> = ({children} : IProps) => {
                 <div className={classes.pageContainer}>
                     {children}
                 </div>
-                {/* <Footer/> */}
             </Layout>
         </Layout>
     );

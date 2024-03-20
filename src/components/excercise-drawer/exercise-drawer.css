@@ -1,0 +1,19 @@
+.exercise-drawer .ant-drawer-header{
+    border-bottom: 0;
+}
+
+.exercise-drawer .ant-drawer-body{
+    padding-top: 0;
+}
+
+
+@media screen and (max-width: 576px){
+    .exercise-drawer .ant-drawer-content{
+        margin-top: 85px;
+        top: 85px;
+        bottom: 0;
+        height: calc(100% - 85px);
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
+    }
+}

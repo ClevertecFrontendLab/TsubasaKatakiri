@@ -16,6 +16,7 @@
 .header{
     width: 100%;
     background-color: #F0F5FF;
+    padding-bottom: 0;
 
     &Text{
         margin-bottom: 0;
@@ -57,7 +58,7 @@
         }
         
         .ant-breadcrumb{
-            margin-bottom: 24px;
+            margin-bottom: 12px;
         }
     }
 }

@@ -1,0 +1,49 @@
+.eventsContainer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.events{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.fullCellRender{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cellTrainingExist{
+    background-color: #F0F5FF;
+}
+
+.calendarWrapper{
+    padding: 0 24px 29px 24px;
+    background-color: #F0F5FF;
+}
+
+.settingsBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+@media screen and (max-width: 576px){
+    .settingsBar{
+        margin-bottom: 19px;
+    }
+
+    .headerSettings{
+        background-color: transparent;
+        border: 0;
+        box-shadow: unset;
+    }
+}

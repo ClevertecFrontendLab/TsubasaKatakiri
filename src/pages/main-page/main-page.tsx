@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 
 import classes from './main-page.module.scss';
 import 'antd/dist/antd.css';
@@ -7,16 +7,55 @@ import { CalendarOutlined, HeartFilled, IdcardOutlined } from '@ant-design/icons
 import LayoutMainPage from '@components/layout-main-page/layout-main-page';
 import { history } from '@redux/configure-store';
 import { ROUTE_PATHS } from '../../routes/route-paths';
+import { setLoadingApp } from '@redux/appUtilSlice';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
+import { useLazyGetTrainingsQuery } from '@redux/trainingAPISlice';
+import { useLazyGetTrainingsListQuery } from '@redux/catalogsAPISlice';
+import { setIsLoaded, setTrainingData } from '@redux/trainingsSlice';
+import { updateTrainingCatalog } from '@redux/catalogsSlice';
+import ModalFeedbackLoadFail from '@components/modal/modal-feedback-load-fail/modal-feedback-load-fail';
 const LayoutBlock = lazy(() => import('@components/layout/layout'))
 
 export const MainPage: React.FC = () => {
+    const dispatch = useAppDispatch();
+    const [getTrainings, {data, isLoading, error}] = useLazyGetTrainingsQuery();
+    const [isFailOpen, setIsFailOpen] = useState<boolean>(false);
+
+
     const handleCalendar = () => {
-        history.push(ROUTE_PATHS.calendar);
+        dispatch(setLoadingApp(true));
+        getTrainings();
     }
+
+    useEffect(() => {
+        if(data){
+            dispatch(setTrainingData(data))
+            dispatch(setIsLoaded(true))
+            history.push(ROUTE_PATHS.calendar);
+        } else if(error){
+            dispatch(setLoadingApp(false));
+            if(('status' in error) && (error.status === 403)){
+                history.push('/auth');
+            }
+            else setIsFailOpen(true);
+        }
+    }, [data, isLoading, error, dispatch])
+
+    // useEffect(() => {
+    //     if(dataList){
+    //         dispatch(updateTrainingCatalog(dataList));
+    //         dispatch(setLoadingApp(false));
+    //     } else if(errorList){
+    //         dispatch(setLoadingApp(false));
+    //         onListLoadFail()
+    //     }
+    // }, [dataList, isLoadingList, errorList, dispatch])
+
 
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <LayoutBlock>
+                <ModalFeedbackLoadFail isOpen={isFailOpen} setIsOpen={setIsFailOpen}/>
                 <LayoutMainPage>
                 <div className={classes.cardWrapper}>
                     <Card style={{width: '100%'}} className={classes.cardDescription}>
@@ -38,7 +77,7 @@ export const MainPage: React.FC = () => {
                             </Button>
                         </Card>
                         <Card title="Назначить календарь" size='small' style={{width: '100%', fontSize: 16}} className={classes.card}>
-                            <Button type='link' icon={<CalendarOutlined />} style={{width: '100%', color: '#2F54EB'}} onClick={handleCalendar}>
+                            <Button type='link' icon={<CalendarOutlined />} style={{width: '100%', color: '#2F54EB'}} onClick={handleCalendar} data-test-id='menu-button-calendar'>
                                 Календарь
                             </Button>
                         </Card>

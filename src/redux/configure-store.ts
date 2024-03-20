@@ -9,7 +9,10 @@ import authUtilsReducer from './authUtilSlice.ts';
 import userDataReducer from './userSlice.ts';
 import feedbackDataReducer from './feedbackSlice.ts';
 import appUtilsReducer from './appUtilSlice.ts';
+import catalogDataReducer from './catalogsSlice.ts';
 import { catalogsAPI } from './catalogsAPISlice.ts';
+import trainingCreateDataReducer from './trainingCreateSlice.ts';
+import trainingDataReducer from './trainingsSlice.ts';
 
 const {
         createReduxHistory,
@@ -27,9 +30,17 @@ export const store = configureStore({
         authUtils: authUtilsReducer,
         userData: userDataReducer,
         feedbackData: feedbackDataReducer,
-        appUtils: appUtilsReducer
+        catalogData: catalogDataReducer,
+        appUtils: appUtilsReducer,
+        trainingData: trainingDataReducer,
+        trainingCreateData: trainingCreateDataReducer
     }),
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(routerMiddleware).concat(authAPI.middleware).concat(feedbackAPI.middleware)
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+    .concat(routerMiddleware)
+    .concat(authAPI.middleware)
+    .concat(feedbackAPI.middleware)
+    .concat(trainingAPI.middleware)
+    .concat(catalogsAPI.middleware)
 });
 
 export const history = createReduxHistory(store);

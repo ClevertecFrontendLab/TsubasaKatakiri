@@ -1,0 +1,26 @@
+.modal-training .ant-modal-header{
+    padding: 16px 12px 4px 12px;
+    border-bottom: 0;
+}
+
+.modal-add-training .ant-modal-header{
+    padding: 12.5px 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: stretch;
+}
+
+.modal-add-training .ant-modal-header .ant-modal-title{
+    width: 100%;
+    min-width: 100%;
+}
+
+.modal-training .ant-modal-footer, .modal-add-training .ant-modal-footer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    row-gap: 12px;
+}

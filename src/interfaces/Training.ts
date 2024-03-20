@@ -1,6 +1,6 @@
 export interface Training{
     name: string,
-    date: Date,
+    date: string,
     isImplementation?: boolean,
     parameters?: TrainingParameters,
     excercises: Excercise[]
@@ -11,7 +11,7 @@ export interface Excercise{
     replays: number,
     weight: number,
     approaches: number,
-    isImplementation: boolean
+    isImplementation?: boolean
 }
 
 export interface TrainingParameters{
@@ -22,7 +22,7 @@ export interface TrainingParameters{
 }
 
 export interface TrainingPutQuery{
-    id: number,
+    id: string,
     data: Training
 }
 
