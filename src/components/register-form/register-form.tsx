@@ -82,9 +82,13 @@ const RegisterForm: React.FC = () => {
                 >
                     <Input.Password placeholder='Повторите пароль' size='large' data-test-id='registration-confirm-password'/>
                 </Form.Item>
-                <Button type='primary' htmlType='submit' className={classes.formButton} size='large' data-test-id='registration-submit-button'>Войти</Button>
+                <Button type='primary' htmlType='submit' className={classes.formButton} size='large' data-test-id='registration-submit-button'>
+                    Войти
+                </Button>
             </Form>
-            <Button type='default' icon={<GooglePlusOutlined />} className={classes.formButton} onClick={onGoogleLogin} size='large'>Регистрация через Google</Button>
+            <Button type='default' icon={<GooglePlusOutlined />} className={classes.formButton} onClick={onGoogleLogin} size='large'>
+                Регистрация через Google
+            </Button>
         </div>
     );
 };

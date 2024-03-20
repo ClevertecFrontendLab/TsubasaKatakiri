@@ -1,8 +1,6 @@
 /// <reference types="vite-plugin-svgr/client" />
 
 import LayoutLogin from '@components/layout-login/layout-login';
-import React from 'react';
-import classes from './success.module.scss';
 import MessageWindow from '@components/message-window/message-window';
 import SuccessIcon from '../../../resources/icons/success.svg?react';
 import { history } from '@redux/configure-store';

@@ -36,7 +36,9 @@ const FeedbackPage: React.FC = () => {
 
     useEffect(() => {
         if(data){
-            const sortedData = [...data].sort((a: PostData, b : PostData) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+            const sortedData = [...data].sort((a: PostData, b : PostData) => {
+                return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+            });
             dispatch(setFeedbackData(sortedData));
             dispatch(setLoadingApp(false));
         } else if(error){
@@ -60,16 +62,35 @@ const FeedbackPage: React.FC = () => {
 
     return (
         <LayoutBlock>
-            <ModalFeedbackForm isOpen={isFeedbackModalOpen} setIsOpen={setIsFeedbackModalOpen} setIsSuccess={setIsFeedbackModalSuccessOpen} setIsFail={setIsFeedbackModalFailOpen}/>
-            <ModalFeedbackSuccess isOpen={isFeedbackModalSuccessOpen} setIsOpen={setIsFeedbackModalSuccessOpen}/>
-            <ModalFeedbackFail isOpenFail={isFeedbackModalFailOpen} setIsOpenFail={setIsFeedbackModalFailOpen} setIsOpenComment={setIsFeedbackModalOpen}/>
-            <ModalFeedbackLoadFail isOpen={isFeedbackLoadModalFailOpen} setIsOpen={setIsFeedbackLoadModalFailOpen}/>
+            <ModalFeedbackForm 
+                isOpen={isFeedbackModalOpen} 
+                setIsOpen={setIsFeedbackModalOpen} 
+                setIsSuccess={setIsFeedbackModalSuccessOpen} 
+                setIsFail={setIsFeedbackModalFailOpen}
+            />
+            <ModalFeedbackSuccess 
+                isOpen={isFeedbackModalSuccessOpen} 
+                setIsOpen={setIsFeedbackModalSuccessOpen}
+            />
+            <ModalFeedbackFail 
+                isOpenFail={isFeedbackModalFailOpen} 
+                setIsOpenFail={setIsFeedbackModalFailOpen} 
+                setIsOpenComment={setIsFeedbackModalOpen}
+            />
+            <ModalFeedbackLoadFail 
+                isOpen={isFeedbackLoadModalFailOpen} 
+                setIsOpen={setIsFeedbackLoadModalFailOpen}
+            />
             {feedbacks.length > 0 
                 ?   <div className={classes.feedbackWrapper}>
                         <FeedbackModule/>
                         <Space direction={isMobile ? 'vertical' : 'horizontal'} className={classes.feedbackControls} style={{gap: '16px'}}>
-                            <Button type='primary' size='large' onClick={showFeedbackModal} data-test-id='write-review'>Написать отзыв</Button>
-                            <Button type='link' size='large' onClick={handleExpand} data-test-id='all-reviews-button' style={{width: '100%'}}>{isExpanded ? 'Свернуть' : 'Развернуть'} все отзывы</Button>
+                            <Button type='primary' size='large' onClick={showFeedbackModal} data-test-id='write-review'>
+                                Написать отзыв
+                            </Button>
+                            <Button type='link' size='large' onClick={handleExpand} data-test-id='all-reviews-button' style={{width: '100%'}}>
+                                {isExpanded ? 'Свернуть' : 'Развернуть'} все отзывы
+                            </Button>
                         </Space>
                     </div>
                 : !isLoadingApp ? <FeedbackPlaceholder setOpenFeedback={setIsFeedbackModalOpen}/> : ''

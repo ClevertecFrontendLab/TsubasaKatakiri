@@ -1,0 +1,48 @@
+.training-calendar  .ant-picker-calendar-header {
+    z-index: 0;
+}
+
+.training-calendar  .ant-picker-calendar-header {
+    background-color: #F0F5FF;
+}
+
+.training-calendar  .ant-picker-body {
+    background-color: #F0F5FF;
+}
+
+.training-calendar  .ant-picker-cell-inner {
+    background-color: #FFFFFF;
+}
+
+
+@media only screen and (max-width: 576px){
+    .training-calendar  .ant-picker-calendar-header {
+        background-color: #FFFFFF;
+    }
+    
+    .training-calendar  .ant-picker-body {
+        background-color: #FFFFFF;
+    }
+    
+    .training-calendar  .ant-picker-cell-inner {
+        background-color: #FFFFFF;
+    }
+
+    .training-calendar  .ant-picker-calendar-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        column-gap: 8px;
+    }
+
+    .training-calendar .ant-picker-calendar-header .ant-picker-calendar-mode-switch {
+        margin-top: 0;
+        margin-left: unset;
+    }
+
+    .training-calendar .ant-picker-calendar-header .ant-picker-calendar-month-select {
+        min-width: 70px;
+        margin-left: 0;
+    }
+}

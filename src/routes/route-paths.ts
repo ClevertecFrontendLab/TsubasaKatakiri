@@ -15,4 +15,5 @@ export const ROUTE_PATHS = {
     successChangePassword: '/result/success-change-password',
     errorChangePassword: '/result/error-change-password',
     feedbacks: '/feedbacks',
+    calendar: '/calendar',
 }

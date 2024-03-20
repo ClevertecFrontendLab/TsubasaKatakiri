@@ -1,7 +1,6 @@
 /// <reference types="vite-plugin-svgr/client" />
 
-import React from 'react';
-import classes from './success-change-password.module.scss';
+
 import LayoutLogin from '@components/layout-login/layout-login';
 import MessageWindow from '@components/message-window/message-window';
 import SuccessIcon from '../../../resources/icons/success.svg?react';

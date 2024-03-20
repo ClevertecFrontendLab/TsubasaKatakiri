@@ -5,7 +5,11 @@ import loader from '../../resources/Loader.json';
 const Loader = () => {
     return (
         <div data-test-id='loader' className={classes.loader}>
-            <Lottie options={{loop: true, autoplay: true, animationData: loader}} width={150} height={150}/>
+            <Lottie 
+                options={{loop: true, autoplay: true, animationData: loader}} 
+                width={150} 
+                height={150}
+            />
         </div>
     );
 };

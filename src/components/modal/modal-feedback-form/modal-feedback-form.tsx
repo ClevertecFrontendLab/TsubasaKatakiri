@@ -53,7 +53,8 @@ const ModalFeedbackForm: React.FC<IProps> = ({isOpen, setIsOpen, setIsSuccess, s
             onOk={handleOk} 
             onCancel={handleCancel}
             footer = {[
-                <Button key='submit' type={'primary'} onClick={handleOk} size='large' style={{width: 'unset'}} disabled={rating === 0} data-test-id='new-review-submit-button'>
+                <Button key='submit' type={'primary'} onClick={handleOk} size='large' style={{width: 'unset'}} 
+                disabled={rating === 0} data-test-id='new-review-submit-button'>
                     Опубликовать
                 </Button>
             ]}

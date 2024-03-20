@@ -5,7 +5,8 @@ import { Link, useLocation } from 'react-router-dom';
 
 const breadcrumbData: Record<string, string> = {
     '/main': 'Главная',
-    '/feedbacks': 'Отзывы пользователей'
+    '/feedbacks': 'Отзывы пользователей',
+    '/calendar': 'Календарь'
 }
 
 const Header: React.FC = () => {

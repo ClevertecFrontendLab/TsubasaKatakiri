@@ -19,9 +19,7 @@ const LoginForm: React.FC = () => {
     const [isRemember, setIsRemember] = useState<boolean | undefined>(false);
 
     const onFinish = (values: User) => {
-        console.log(values);
         setIsRemember(values.remember);
-        console.log(values.remember);
         loginUser({email: values.email, password: values.password});
         dispatch(setLoadingState(true));
     }
@@ -106,11 +104,17 @@ const LoginForm: React.FC = () => {
                     >
                         <Checkbox data-test-id='login-remember'>Запомнить меня</Checkbox>
                     </Form.Item>
-                    <Button type='link' onClick={onForgot} style={{paddingRight: 0}} data-test-id='login-forgot-button'>Забыли пароль?</Button>
+                    <Button type='link' onClick={onForgot} style={{paddingRight: 0}} data-test-id='login-forgot-button'>
+                        Забыли пароль?
+                    </Button>
                 </div>
-                <Button type='primary' htmlType='submit' className={classes.formButton} size='large' data-test-id='login-submit-button'>Войти</Button>
+                <Button type='primary' htmlType='submit' className={classes.formButton} size='large' data-test-id='login-submit-button'>
+                    Войти
+                    </Button>
             </Form>
-            <Button type='default' icon={<GooglePlusOutlined />} className={classes.formButton} size='large' onClick={onGoogleLogin}>Войти через Google</Button>
+            <Button type='default' icon={<GooglePlusOutlined />} className={classes.formButton} size='large' onClick={onGoogleLogin}>
+                Войти через Google
+            </Button>
         </div>
     );
 };

@@ -4,10 +4,15 @@ import { createReduxHistoryContext } from 'redux-first-history';
 import { createBrowserHistory } from 'history';
 import { authAPI } from './authAPISlice.ts'
 import { feedbackAPI } from './feedbackAPISlice.ts'
+import { trainingAPI } from './trainingAPISlice.ts'
 import authUtilsReducer from './authUtilSlice.ts';
 import userDataReducer from './userSlice.ts';
 import feedbackDataReducer from './feedbackSlice.ts';
 import appUtilsReducer from './appUtilSlice.ts';
+import catalogDataReducer from './catalogsSlice.ts';
+import { catalogsAPI } from './catalogsAPISlice.ts';
+import trainingCreateDataReducer from './trainingCreateSlice.ts';
+import trainingDataReducer from './trainingsSlice.ts';
 
 const {
         createReduxHistory,
@@ -20,12 +25,22 @@ export const store = configureStore({
         router: routerReducer,
         [authAPI.reducerPath]: authAPI.reducer,
         [feedbackAPI.reducerPath]: feedbackAPI.reducer,
+        [trainingAPI.reducerPath]: trainingAPI.reducer,
+        [catalogsAPI.reducerPath]: catalogsAPI.reducer,
         authUtils: authUtilsReducer,
         userData: userDataReducer,
         feedbackData: feedbackDataReducer,
-        appUtils: appUtilsReducer
+        catalogData: catalogDataReducer,
+        appUtils: appUtilsReducer,
+        trainingData: trainingDataReducer,
+        trainingCreateData: trainingCreateDataReducer
     }),
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(routerMiddleware).concat(authAPI.middleware).concat(feedbackAPI.middleware)
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+    .concat(routerMiddleware)
+    .concat(authAPI.middleware)
+    .concat(feedbackAPI.middleware)
+    .concat(trainingAPI.middleware)
+    .concat(catalogsAPI.middleware)
 });
 
 export const history = createReduxHistory(store);

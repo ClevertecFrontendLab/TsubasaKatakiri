@@ -25,13 +25,16 @@ const ModalFeedbackLoadFail : React.FC<IProps> = ({isOpen, setIsOpen}: IProps) =
             open={isOpen}
             closable={false}
             footer={null}
+            data-test-id='modal-no-review'
         >
             <div className={classes.modalContainer}>
                 <FailSplash/>
                 <div className={classes.modalText}>
-                    <Typography.Title style={{fontSize: '24px', lineHeight: '31.2px', fontWeight: 500, margin: 0}}>Что-то пошло не так</Typography.Title>
+                    <Typography.Title style={{fontSize: '24px', lineHeight: '31.2px', fontWeight: 500, margin: 0}}>
+                        Что-то пошло не так
+                    </Typography.Title>
                     <Typography.Text style={{fontSize: '14px', lineHeight: '18.2px', fontWeight: 400, margin: 0, color: '#8C8C8C'}}>
-                    Произошла ошибка, <>{isMobile && <br/>}</>попробуйте еще раз.
+                        {isMobile ? <>Произошла ошибка, <>{isMobile && <br/>}</>попробуйте еще раз.</> : 'Произошла ошибка, попробуйте ещё раз.'}
                     </Typography.Text>
                 </div>
                 <Button size='large' type='primary' style={{width: 'unset'}} onClick={handleClose}>Назад</Button>
