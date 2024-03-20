@@ -31,8 +31,10 @@ export const MainPage: React.FC = () => {
         if(data){
             dispatch(setTrainingData(data))
             dispatch(setIsLoaded(true))
+            dispatch(setLoadingApp(false));
             history.push(ROUTE_PATHS.calendar);
         } else if(error){
+            console.log(error);
             dispatch(setLoadingApp(false));
             if(('status' in error) && (error.status === 403)){
                 history.push('/auth');

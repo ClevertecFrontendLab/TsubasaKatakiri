@@ -123,7 +123,7 @@ const ModalAddTraining: React.FC<IProps> = ({isOpen, setIsOpen, date, setOpenDra
         const primaryFilter = data.filter((item) => {
             if (typeof item.date === 'number') {
                 const date = new Date(item.date);
-                const dateString = date.toLocaleDateString();
+                const dateString = date.toLocaleDateString('ru');
                 const dateStringFormat: string = dateString.split('.').reverse().join('-');
                 return dateStringFormat === transformedDate;
             }
@@ -227,10 +227,6 @@ const ModalAddTraining: React.FC<IProps> = ({isOpen, setIsOpen, date, setOpenDra
             setUpdateMode(false);
         }
     }, [updateMode])
-
-    console.log(posX);
-    console.log(posY);
-
 
     return (
         <Modal

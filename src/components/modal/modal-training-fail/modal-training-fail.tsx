@@ -20,8 +20,8 @@ const ModalTrainingFail: React.FC<IProps> = ({isOpened, setIsOpened, saveMode, o
     }
 
     const onAction = () => {
-        onOk();
         setIsOpened(false);
+        onOk();
     }
 
     return (

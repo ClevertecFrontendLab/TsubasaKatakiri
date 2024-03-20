@@ -77,6 +77,7 @@ const CalendarPage: React.FC = () => {
                 dispatch(setTrainingData(data));
                 dispatch(setIsLoaded(true));
             } else if(error){
+                console.log(error);
                 dispatch(setLoadingApp(false));
                 if(('status' in error) && (error.status === 403)){
                     history.push('/auth');
@@ -116,7 +117,7 @@ const CalendarPage: React.FC = () => {
         return data.filter((training) => {
             if (typeof training.date === 'number') {
                 const date = new Date(training.date);
-                const dateString = date.toLocaleDateString();
+                const dateString = date.toLocaleDateString('ru');
                 const dateStringFormat: string = dateString.split('.').reverse().join('-');
                 return dateStringFormat === dateCell;
             }
