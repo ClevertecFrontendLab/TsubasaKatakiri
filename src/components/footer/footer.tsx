@@ -7,13 +7,14 @@ import mockAvatar from '~/assets/header/Breakfast.png';
 
 const Footer = () => (
     <Flex
-        width='100%'
+        width='100vw'
         height='84px'
         bg='#FFFFD3'
         position='fixed'
         bottom={0}
         left={0}
         right={0}
+        zIndex={3}
         flexDirection='row'
         alignItems='center'
         justifyContent='space-between'

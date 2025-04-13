@@ -8,6 +8,7 @@ import VeganCard from '../vegan-card/vegan-card';
 
 const Desserts = () => {
     const [isWideDesktop] = useMediaQuery('(min-width: 1441px)');
+    const [isMobile] = useMediaQuery('(max-width: 767px)');
 
     return (
         <Flex
@@ -19,8 +20,8 @@ const Desserts = () => {
             px='24px'
         >
             <Flex
-                flexDirection='row'
-                alignItems='center'
+                flexDirection={isMobile ? 'column' : 'row'}
+                alignItems={isMobile ? 'flex-start' : 'center'}
                 justifyContent='space-between'
                 width='100%'
             >
@@ -28,8 +29,8 @@ const Desserts = () => {
                     as='h1'
                     my={0}
                     fontWeight={500}
-                    fontSize={`${isWideDesktop ? '48px' : '36px'}`}
-                    lineHeight={`${isWideDesktop ? '48px' : '40px'}`}
+                    fontSize={`${isWideDesktop ? '48px' : isMobile ? '24px' : '36px'}`}
+                    lineHeight={`${isWideDesktop ? '48px' : isMobile ? '32px' : '40px'}`}
                 >
                     Десерты, выпечка
                 </Heading>
@@ -39,10 +40,21 @@ const Desserts = () => {
                     теста многообразны и невероятно популярны.
                 </Text>
             </Flex>
-            <Flex flexDirection='row' alignItems='flex-start' gap='24px' width='100%'>
+            <Flex
+                flexDirection={isMobile ? 'column' : 'row'}
+                alignItems='flex-start'
+                gap='24px'
+                width='100%'
+            >
                 <Flex
-                    width={`${isWideDesktop ? 'calc((100% - 24px) / 2)' : 'calc(((100% - 24px) / 3) * 2)'}`}
-                    flexDirection='row'
+                    width={`${
+                        isWideDesktop
+                            ? 'calc((100% - 24px) / 2)'
+                            : isMobile
+                              ? '100%'
+                              : 'calc(((100% - 24px) / 3) * 2)'
+                    }`}
+                    flexDirection={isMobile ? 'column' : 'row'}
                     gap='24px'
                 >
                     <VeganCard
@@ -63,7 +75,13 @@ const Desserts = () => {
                     />
                 </Flex>
                 <Flex
-                    width={`${isWideDesktop ? 'calc((100% - 24px) / 2)' : 'calc((100% - 24px) / 3)'}`}
+                    width={`${
+                        isWideDesktop
+                            ? 'calc((100% - 24px) / 2)'
+                            : isMobile
+                              ? '100%'
+                              : 'calc((100% - 24px) / 3)'
+                    }`}
                     flexDirection='column'
                     alignItems='center'
                     gap='12px'

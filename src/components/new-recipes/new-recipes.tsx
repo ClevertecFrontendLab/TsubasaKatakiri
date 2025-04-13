@@ -13,15 +13,23 @@ import NewRecipeCard from '../new-recipe-card/new-recipe-card';
 
 const NewRecipes = () => {
     const [isWideDesktop] = useMediaQuery('(min-width: 1441px)');
+    const [isPortable] = useMediaQuery('(max-width: 991px)');
 
     return (
-        <Flex flexDirection='column' alignItems='flex-start' gap='24px' mb='40px' px='24px'>
+        <Flex
+            flexDirection='column'
+            alignItems='flex-start'
+            gap='24px'
+            mb='40px'
+            px='24px'
+            width={isPortable ? 'calc(100vw - 20px)' : '100%'}
+        >
             <Heading
                 as='h1'
                 my={0}
                 fontWeight={500}
-                fontSize={`${isWideDesktop ? '48px' : '36px'}`}
-                lineHeight={`${isWideDesktop ? '48px' : '40px'}`}
+                fontSize={`${isWideDesktop ? '48px' : isPortable ? '24px' : '36px'}`}
+                lineHeight={`${isWideDesktop ? '48px' : isPortable ? '32px' : '40px'}`}
             >
                 Новые рецепты
             </Heading>

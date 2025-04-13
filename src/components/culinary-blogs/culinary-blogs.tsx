@@ -9,6 +9,8 @@ import CulinaryBlogCard from '../culinary-blog-card/culinary-blog-card';
 
 const CulinaryBlogs = () => {
     const [isWideDesktop] = useMediaQuery('(min-width: 1441px)');
+    const [isPortable] = useMediaQuery('(max-width: 991px)');
+    const [isMobile] = useMediaQuery('(max-width: 767px)');
 
     return (
         <Flex
@@ -17,7 +19,7 @@ const CulinaryBlogs = () => {
             gap='24px'
             width='100%'
             mb='40px'
-            p='24px'
+            p={isPortable ? '12px' : '24px'}
             backgroundColor='#C4FF61'
         >
             <Flex
@@ -35,11 +37,18 @@ const CulinaryBlogs = () => {
                 >
                     Кулинарные блоги
                 </Heading>
-                <Button bgColor='#B1FF2E' rightIcon={<ArrowForwardIcon />}>
-                    Все авторы
-                </Button>
+                {!isPortable && (
+                    <Button bgColor='#B1FF2E' rightIcon={<ArrowForwardIcon />}>
+                        Все авторы
+                    </Button>
+                )}
             </Flex>
-            <Flex flexDirection='row' alignItems='flex-start' gap='24px' width='100%'>
+            <Flex
+                flexDirection={isMobile ? 'column' : 'row'}
+                alignItems='flex-start'
+                gap={isPortable ? '12px' : '24px'}
+                width='100%'
+            >
                 <CulinaryBlogCard
                     cardImage={avatar1}
                     name='Елена Высоцкая'
@@ -59,6 +68,11 @@ const CulinaryBlogs = () => {
                     post='Как раз после праздников, когда мясные продукты еще остались, но никто их уже не хочет, время варить солянку.'
                 />
             </Flex>
+            {isPortable && (
+                <Button bgColor='#B1FF2E' rightIcon={<ArrowForwardIcon />} margin='0 auto'>
+                    Все авторы
+                </Button>
+            )}
         </Flex>
     );
 };

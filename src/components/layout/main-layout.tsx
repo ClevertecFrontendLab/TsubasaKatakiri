@@ -12,6 +12,7 @@ type Props = {
 
 const MainLayout = ({ children }: Props) => {
     const [isDesktop] = useMediaQuery('(min-width: 992px)');
+    const [isMobile] = useMediaQuery('(max-width: 767px)');
 
     return (
         <Flex
@@ -19,8 +20,8 @@ const MainLayout = ({ children }: Props) => {
             height='100%'
             minHeight='100vh'
             position='relative'
-            width='100%'
             py={0}
+            width='100%'
         >
             <Header />
             <Flex>
@@ -30,10 +31,11 @@ const MainLayout = ({ children }: Props) => {
                     marginTop='80px'
                     ml={`${isDesktop ? '256px' : '0'}`}
                     mr={`${isDesktop ? '208px' : '0'}`}
-                    width={`${isDesktop ? 'calc(100vw - 256px - 208px)' : '100vw'}`}
+                    width={`${isDesktop ? 'calc(100vw - 256px - 208px)' : '100%'}`}
                     height='100%'
                     minHeight='calc(100vh - 80px)'
                     pt='32px'
+                    pb={isMobile ? '80px' : 0}
                 >
                     {children}
                 </Flex>

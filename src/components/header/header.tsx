@@ -33,7 +33,7 @@ const Header = () => {
             ) : (
                 <Image src={Logo} alt='yee-daa' height='32px' />
             )}
-            <Spacer width='100%' maxWidth='128px' />
+            {isDesktop && <Spacer width='100%' maxWidth='128px' />}
             {isDesktop && <Breadcrumbs />}
             {!isDesktop ? (
                 <Flex direction='row' alignItems='center' gap='16px'>
