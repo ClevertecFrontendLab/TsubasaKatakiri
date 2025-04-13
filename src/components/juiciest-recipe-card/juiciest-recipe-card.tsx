@@ -105,7 +105,7 @@ const JuiciestRecipeCard = ({
                 <Heading noOfLines={1} as='h4' fontSize='20px' lineHeight='28px' fontWeight={500}>
                     {name}
                 </Heading>
-                <Text noOfLines={3} fontWeight={400} fontSize='14px' lineHeight='20px'>
+                <Text noOfLines={3} fontWeight={400} fontSize='14px' lineHeight='20px' align='left'>
                     {description}
                 </Text>
             </Flex>
