@@ -17,6 +17,7 @@ const Footer = () => (
         flexDirection='row'
         alignItems='center'
         justifyContent='space-between'
+        data-test-id='footer'
     >
         <Button
             variant='ghost'

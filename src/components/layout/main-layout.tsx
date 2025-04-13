@@ -26,12 +26,11 @@ const MainLayout = ({ children }: Props) => {
             <Flex>
                 {isDesktop && <Aside />}
                 <Flex
-                    margin='0 auto'
                     flexDirection='column'
                     marginTop='80px'
-                    ml='256px'
-                    mr='208px'
-                    width='calc(100vw - 256px - 208px)'
+                    ml={`${isDesktop ? '256px' : '0'}`}
+                    mr={`${isDesktop ? '208px' : '0'}`}
+                    width={`${isDesktop ? 'calc(100vw - 256px - 208px)' : '100vw'}`}
                     height='100%'
                     minHeight='calc(100vh - 80px)'
                     pt='32px'

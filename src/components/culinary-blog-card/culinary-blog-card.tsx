@@ -13,7 +13,13 @@ const CulinaryBlogCard = ({ cardImage, name, id, post }: Props) => (
             <Flex gap='12px'>
                 <Avatar src={cardImage} name={name} width='48px' height='48px' />
                 <Flex direction='column' alignItems='flex-start'>
-                    <Text fontSize='18px' lineHeight='28px' fontWeight={500} margin={0}>
+                    <Text
+                        noOfLines={1}
+                        fontSize='18px'
+                        lineHeight='28px'
+                        fontWeight={500}
+                        margin={0}
+                    >
                         {name}
                     </Text>
                     <Text fontSize='14px' lineHeight='20px' color='gray' margin={0}>
@@ -23,7 +29,7 @@ const CulinaryBlogCard = ({ cardImage, name, id, post }: Props) => (
             </Flex>
         </CardHeader>
         <CardBody padding='12px 24px 20px'>
-            <Text>{post}</Text>
+            <Text noOfLines={3}>{post}</Text>
         </CardBody>
     </Card>
 );

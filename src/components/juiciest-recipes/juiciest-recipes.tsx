@@ -1,5 +1,5 @@
 import { ArrowForwardIcon } from '@chakra-ui/icons';
-import { Button, Flex, Heading } from '@chakra-ui/react';
+import { Button, Flex, Heading, useMediaQuery } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 import { useNavigate } from 'react-router';
 
@@ -9,6 +9,7 @@ interface Props {
 }
 
 const JuiciestRecipes = ({ isOnPage, children }: Props) => {
+    const [isWideDesktop] = useMediaQuery('(min-width: 1441px)');
     const navigate = useNavigate();
 
     const handleAllClick = () => {
@@ -31,13 +32,20 @@ const JuiciestRecipes = ({ isOnPage, children }: Props) => {
                     justifyContent='space-between'
                     width='100%'
                 >
-                    <Heading as='h1' my={0} fontWeight={500} fontSize='48px' lineHeight='48px'>
+                    <Heading
+                        as='h1'
+                        my={0}
+                        fontWeight={500}
+                        fontSize={`${isWideDesktop ? '48px' : '36px'}`}
+                        lineHeight={`${isWideDesktop ? '48px' : '40px'}`}
+                    >
                         Самое сочное
                     </Heading>
                     <Button
                         bgColor='#B1FF2E'
                         rightIcon={<ArrowForwardIcon />}
                         onClick={() => handleAllClick()}
+                        data-test-id='juiciest-link'
                     >
                         Вся подборка
                     </Button>
