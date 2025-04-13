@@ -11,19 +11,24 @@ import {
     InputRightElement,
     Select,
     Switch,
+    Text,
 } from '@chakra-ui/react';
 
 import leftIcon from '~/assets/page/left-icon.svg';
 
 interface Props {
     heading: string;
+    text?: string;
 }
 
-const SearchBox = ({ heading }: Props) => (
+const SearchBox = ({ heading, text }: Props) => (
     <Flex flexDirection='column' alignItems='center' mb='24px'>
-        <Heading as='h1' mt={0} mb='32px' fontSize='48px' lineHeight='48px'>
+        <Heading as='h1' mt={0} mb={`${text ? '12px' : '32px'}`} fontSize='48px' lineHeight='48px'>
             {heading}
         </Heading>
+        <Text width='100%' maxWidth='696px' align='center' color='#0000007A' mb='32px'>
+            {text}
+        </Text>
         <Flex direction='column' gap='16px'>
             <Flex flexDirection='row' alignItems='center' justifyContent='space-between' gap='12px'>
                 <Button
