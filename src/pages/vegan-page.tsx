@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 import { Fragment } from 'react/jsx-runtime';
 
-import MainLayout from '~/components/new-recipe-card/main-layout';
+import MainLayout from '~/components/layout/main-layout';
 import SearchBox from '~/components/search-box/search-box';
 
 const VeganPage = () => (

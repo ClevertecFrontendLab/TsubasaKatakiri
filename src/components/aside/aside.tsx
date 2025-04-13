@@ -46,9 +46,6 @@ const Aside = () => {
         navigate(url);
     };
 
-    console.log('Item', itemIndex);
-    console.log('Subitem', subitemIndex);
-
     return (
         <Flex
             direction='column'

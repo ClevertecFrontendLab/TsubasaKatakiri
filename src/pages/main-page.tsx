@@ -1,26 +1,20 @@
-import { Flex } from '@chakra-ui/react';
 import { Fragment } from 'react/jsx-runtime';
 
-import MainLayout from '~/components/new-recipe-card/main-layout';
+import CulinaryBlogs from '~/components/culinary-blogs/culinary-blogs';
+import JuiciestRecipes from '~/components/juiciest-recipes/juiciest-recipes';
+import MainLayout from '~/components/layout/main-layout';
 import NewRecipes from '~/components/new-recipes/new-recipes';
 import SearchBox from '~/components/search-box/search-box';
+import VeganCuisine from '~/components/vegan-cuisine/vegan-cuisine';
 
 const MainPage = () => (
     <Fragment>
         <MainLayout>
-            Main page
-            <Flex
-                width='100%'
-                marginTop='80px'
-                height='100vh'
-                minHeight='calc(100vh - 80px)'
-                flexDirection='column'
-                alignItems='center'
-                justifyContent='flex-start'
-            >
-                <SearchBox heading='Приятного аппетита!' />
-                <NewRecipes />
-            </Flex>
+            <SearchBox heading='Приятного аппетита!' />
+            <NewRecipes />
+            <JuiciestRecipes />
+            <CulinaryBlogs />
+            <VeganCuisine />
         </MainLayout>
     </Fragment>
 );
