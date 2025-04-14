@@ -25,7 +25,7 @@ const Header = () => {
             top={0}
             left={0}
             right={0}
-            zIndex={3}
+            zIndex={10}
             data-test-id='header'
         >
             {isMobile ? (

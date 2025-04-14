@@ -39,7 +39,7 @@ const NewRecipeCard = ({
 
     return (
         <Card
-            width={`${isWideDesktop ? 'calc((100% - 24px * 3) / 4)' : isPortable ? '158px' : '279px'}`}
+            width={`${isWideDesktop ? '322px' : isPortable ? '158px' : '279px'}`}
             minWidth={`${isWideDesktop ? 'unset' : isPortable ? '158px' : '279px'}`}
             maxWidth={`${isWideDesktop ? 'unset' : isPortable ? '158px' : '279px'}`}
             height={isPortable ? '220px' : '100%'}
@@ -53,6 +53,8 @@ const NewRecipeCard = ({
                     height={isPortable ? '128px' : '100%'}
                     objectFit='cover'
                     position='relative'
+                    borderTopRightRadius='8px'
+                    borderTopLeftRadius='8px'
                 />
                 {isPortable && (
                     <Tag
@@ -62,6 +64,7 @@ const NewRecipeCard = ({
                         position='absolute'
                         top='8px'
                         left='8px'
+                        right='8px'
                     >
                         <Image src={categoryIcon} alt='' mr='2px' />
                         <TagLabel>{category}</TagLabel>
@@ -93,7 +96,7 @@ const NewRecipeCard = ({
                 display='flex'
                 alignItems='center'
                 justifyContent='space-between'
-                padding={isPortable ? '0px 8px 4px' : 'inherit'}
+                padding={isPortable ? '0px 8px 4px' : '0px 24px 20px'}
             >
                 {!isPortable && (
                     <Tag bgColor='#D7FF94' color='#000000' fontWeight={400}>

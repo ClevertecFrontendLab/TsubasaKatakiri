@@ -14,7 +14,7 @@ const Footer = () => (
         bottom={0}
         left={0}
         right={0}
-        zIndex={3}
+        zIndex={10}
         flexDirection='row'
         alignItems='center'
         justifyContent='space-between'
@@ -28,7 +28,15 @@ const Footer = () => (
             flexDir='column'
             alignItems='center'
         >
-            <Image src={Main} alt='' width='40px' height='40px' margin='4px' />
+            <Image
+                src={Main}
+                alt=''
+                width='40px'
+                height='40px'
+                margin='4px'
+                boxShadow='0 0 20px #C4FF61'
+                borderRadius='50%'
+            />
             <Text fontWeight={500} fontSize='12px' lineHeight='16px'>
                 Главная
             </Text>

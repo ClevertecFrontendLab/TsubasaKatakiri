@@ -25,19 +25,36 @@ interface Props {
 
 const VeganCard = ({ name, description, categoryIcon, category, likes, bookmarks }: Props) => {
     const [isMobile] = useMediaQuery('(max-width: 767px)');
+    const [isPortable] = useMediaQuery('(max-width: 991px)');
 
     return (
-        <Card width={isMobile ? '100%' : 'calc((100% - 24px) / 2)'}>
-            <CardBody padding='16px 24px 20px' display='flex' flexDir='column' gap='8px'>
-                <Heading noOfLines={1} as='h4' fontSize='20px' lineHeight='28px' fontWeight={500}>
+        <Card width={isMobile ? '100%' : 'calc((100% - 24px) / 2)'} flex={1}>
+            <CardBody
+                padding={isPortable ? '12px 12px 24px' : '16px 24px 20px'}
+                display='flex'
+                flexDir='column'
+                gap='8px'
+            >
+                <Heading
+                    noOfLines={1}
+                    as='h4'
+                    fontSize={isPortable ? '16px' : '20px'}
+                    lineHeight={isPortable ? '24px' : '28px'}
+                    fontWeight={500}
+                >
                     {name}
                 </Heading>
-                <Text noOfLines={3} fontWeight={400} fontSize='14px' lineHeight='20px'>
+                <Text noOfLines={3} fontWeight={400} fontSize='14px' lineHeight='20px' pb='4px'>
                     {description}
                 </Text>
             </CardBody>
-            <CardFooter display='flex' alignItems='center' justifyContent='space-between'>
-                <Tag bgColor='#D7FF94' color='#000000' fontWeight={400}>
+            <CardFooter
+                display='flex'
+                alignItems='center'
+                justifyContent='space-between'
+                padding={isPortable ? '0 12px 12px' : '20px 24px 24px'}
+            >
+                <Tag bgColor='#FFFFD3' color='#000000' fontWeight={400}>
                     <Image src={categoryIcon} alt='' mr='8px' />
                     <TagLabel>{category}</TagLabel>
                 </Tag>

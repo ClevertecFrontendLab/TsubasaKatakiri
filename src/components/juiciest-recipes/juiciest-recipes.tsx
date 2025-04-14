@@ -12,6 +12,8 @@ const JuiciestRecipes = ({ isOnPage, children }: Props) => {
     const [isWideDesktop] = useMediaQuery('(min-width: 1441px)');
     const [isMobileTurned] = useMediaQuery('(max-height: 751px)');
     const [isPortable] = useMediaQuery('(max-width: 991px)');
+    const [isMobile] = useMediaQuery('(max-width: 767px)');
+
     const navigate = useNavigate();
 
     const handleAllClick = () => {
@@ -22,10 +24,10 @@ const JuiciestRecipes = ({ isOnPage, children }: Props) => {
         <Flex
             flexDirection='column'
             alignItems='flex-start'
-            gap='24px'
-            width={isPortable ? 'calc(100vw - 20px)' : '100%'}
+            gap={isPortable ? '12px' : '24px'}
+            width='100%'
             mb='40px'
-            px='24px'
+            px={isMobile ? '16px' : isPortable ? '20px' : '24px'}
         >
             {!isOnPage && (
                 <Flex
@@ -55,10 +57,15 @@ const JuiciestRecipes = ({ isOnPage, children }: Props) => {
                     )}
                 </Flex>
             )}
-            <Flex flexFlow='row wrap' alignItems='flex-start' gap='24px' width='100%'>
+            <Flex
+                flexFlow='row wrap'
+                alignItems='flex-start'
+                gap={isPortable ? '16px' : '24px'}
+                width='100%'
+            >
                 {children}
             </Flex>
-            {(isPortable || isMobileTurned) && (
+            {(isPortable || isMobileTurned) && !isOnPage && (
                 <Button
                     visibility={isPortable ? 'visible' : 'hidden'}
                     bgColor='#B1FF2E'
@@ -68,6 +75,11 @@ const JuiciestRecipes = ({ isOnPage, children }: Props) => {
                     margin='0 auto'
                 >
                     Вся подборка
+                </Button>
+            )}
+            {isOnPage && (
+                <Button bgColor='#B1FF2E' mt='16px' mx='auto'>
+                    Загрузить еще
                 </Button>
             )}
         </Flex>

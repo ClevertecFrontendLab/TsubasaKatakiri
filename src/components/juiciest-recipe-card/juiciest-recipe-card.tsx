@@ -4,7 +4,7 @@ import {
     CardBody,
     CardHeader,
     Flex,
-    Heading,
+    IconButton,
     Image,
     Tag,
     TagLabel,
@@ -50,7 +50,7 @@ const JuiciestRecipeCard = ({
                     : isMobile
                       ? '100%'
                       : isPortable
-                        ? 'calc((100% - 24px) / 2)'
+                        ? 'calc((100% - 16px) / 2)'
                         : '100%'
             }`}
             direction='row'
@@ -78,9 +78,10 @@ const JuiciestRecipeCard = ({
                         position='absolute'
                         top='8px'
                         left='8px'
+                        p='2px 4px'
                         zIndex={1}
                     >
-                        <Image src={categoryIcon} alt='' mr='8px' />
+                        <Image src={categoryIcon} alt='' mr='2px' />
                         <TagLabel>{category}</TagLabel>
                     </Tag>
                 )}
@@ -114,7 +115,7 @@ const JuiciestRecipeCard = ({
                     )}
                     <Flex>
                         {likes && (
-                            <Flex gap='10px' px='8px' py='4px' height='24px' alignItems='center'>
+                            <Flex gap='6px' px='4px' py='4px' height='24px' alignItems='center'>
                                 <Image width='12px' src={Smile} alt='Bookmarks' />
                                 <Text
                                     fontSize='12px'
@@ -128,7 +129,7 @@ const JuiciestRecipeCard = ({
                             </Flex>
                         )}
                         {bookmarks && (
-                            <Flex gap='10px' px='8px' py='4px' height='24px' alignItems='center'>
+                            <Flex gap='6px' px='4px' py='4px' height='24px' alignItems='center'>
                                 <Image width='12px' src={Bookmark} alt='Bookmarks' />
                                 <Text
                                     fontSize='12px'
@@ -144,15 +145,15 @@ const JuiciestRecipeCard = ({
                     </Flex>
                 </Flex>
                 <Flex flexDir='column' alignItems='flex-start' gap='8px'>
-                    <Heading
+                    <Text
                         noOfLines={isPortable ? 2 : 1}
-                        as='h4'
                         fontSize={isPortable ? '16px' : '20px'}
                         lineHeight={isPortable ? '24px' : '28px'}
                         fontWeight={500}
+                        textAlign='left'
                     >
                         {name}
-                    </Heading>
+                    </Text>
                     {!isPortable && (
                         <Text
                             noOfLines={3}
@@ -172,19 +173,30 @@ const JuiciestRecipeCard = ({
                     width='100%'
                     mt='auto'
                 >
-                    <Button
-                        leftIcon={<Image src={Bookmark} alt='' />}
-                        variant='outline'
-                        borderColor='#0000007A'
-                        size={isPortable ? 'sm' : 'md'}
-                    >
-                        {!isPortable && 'Сохранить'}
-                    </Button>
+                    {!isPortable && (
+                        <Button
+                            leftIcon={<Image src={Bookmark} alt='' />}
+                            variant='outline'
+                            borderColor='#0000007A'
+                            size='sm'
+                        >
+                            Сохранить
+                        </Button>
+                    )}
+                    {isPortable && (
+                        <IconButton
+                            icon={<Image src={Bookmark} alt='' />}
+                            variant='outline'
+                            borderColor='#0000007A'
+                            size='xs'
+                            aria-label=''
+                        />
+                    )}
                     <Button
                         variant='solid'
                         bgColor='#000000'
                         color='#FFFFFF'
-                        size={isPortable ? 'sm' : 'md'}
+                        size={isPortable ? 'xs' : 'sm'}
                     >
                         Готовить
                     </Button>

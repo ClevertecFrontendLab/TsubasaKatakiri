@@ -9,6 +9,7 @@ import VeganCard from '../vegan-card/vegan-card';
 const Desserts = () => {
     const [isWideDesktop] = useMediaQuery('(min-width: 1441px)');
     const [isMobile] = useMediaQuery('(max-width: 767px)');
+    const [isPortable] = useMediaQuery('(max-width: 991px)');
 
     return (
         <Flex
@@ -17,7 +18,7 @@ const Desserts = () => {
             gap='24px'
             width='100%'
             mb='40px'
-            px='24px'
+            px={isMobile ? '16px' : isPortable ? '20px' : '24px'}
         >
             <Flex
                 flexDirection={isMobile ? 'column' : 'row'}
@@ -34,7 +35,13 @@ const Desserts = () => {
                 >
                     Десерты, выпечка
                 </Heading>
-                <Text width='100%' maxWidth='668px' color='#000000A3'>
+                <Text
+                    width='100%'
+                    maxWidth='668px'
+                    fontSize={isPortable ? '14px' : '16px'}
+                    lineHeight={isPortable ? '20px' : '24px'}
+                    color='#000000A3'
+                >
                     Без них невозможно представить себе ни современную, ни традиционную кулинарию.
                     Пироги и печенья, блины, пончики, вареники и, конечно, хлеб — рецепты изделий из
                     теста многообразны и невероятно популярны.
@@ -43,7 +50,7 @@ const Desserts = () => {
             <Flex
                 flexDirection={isMobile ? 'column' : 'row'}
                 alignItems='flex-start'
-                gap='24px'
+                gap={isPortable ? '16px' : '24px'}
                 width='100%'
             >
                 <Flex
@@ -55,7 +62,7 @@ const Desserts = () => {
                               : 'calc(((100% - 24px) / 3) * 2)'
                     }`}
                     flexDirection={isMobile ? 'column' : 'row'}
-                    gap='24px'
+                    gap={isPortable ? '16px' : '24px'}
                 >
                     <VeganCard
                         name='Бананово-молочное желе'
@@ -84,27 +91,34 @@ const Desserts = () => {
                     }`}
                     flexDirection='column'
                     alignItems='center'
-                    gap='12px'
+                    gap={isMobile ? '12px' : isPortable ? '6px' : '12px'}
                 >
                     <Card
                         direction='row'
                         justifyContent='space-between'
                         width='100%'
-                        padding='14px 24px'
+                        py={isPortable ? '10px' : '14px'}
+                        px={isPortable ? '12px' : '24px'}
                     >
-                        <Flex flex={1} gap='12px'>
+                        <Flex flex={1} gap={isPortable ? '8px' : '12px'}>
                             <Image src={kids} alt='' />
-                            <Heading
+                            <Text
                                 noOfLines={1}
                                 as='h3'
-                                fontSize='20px'
+                                fontSize={isPortable ? '18px' : '20px'}
                                 lineHeight='28px'
                                 fontWeight={500}
                             >
                                 Домашние сырные палочки
-                            </Heading>
+                            </Text>
                         </Flex>
-                        <Button variant='outline' color='#2DB100' borderColor='#2DB100' size='sm'>
+                        <Button
+                            variant='outline'
+                            color='#2DB100'
+                            borderColor='#2DB100'
+                            size='sm'
+                            width={isPortable ? '70px' : 'auto'}
+                        >
                             Готовить
                         </Button>
                     </Card>
@@ -112,21 +126,28 @@ const Desserts = () => {
                         direction='row'
                         justifyContent='space-between'
                         width='100%'
-                        padding='14px 24px'
+                        py={isPortable ? '10px' : '14px'}
+                        px={isPortable ? '12px' : '24px'}
                     >
-                        <Flex flex={1} gap='12px'>
+                        <Flex flex={1} gap={isPortable ? '8px' : '12px'}>
                             <Image src={national} alt='' />
-                            <Heading
+                            <Text
                                 noOfLines={1}
                                 as='h3'
-                                fontSize='20px'
+                                fontSize={isPortable ? '18px' : '20px'}
                                 lineHeight='28px'
                                 fontWeight={500}
                             >
                                 Панкейки
-                            </Heading>
+                            </Text>
                         </Flex>
-                        <Button variant='outline' color='#2DB100' borderColor='#2DB100' size='sm'>
+                        <Button
+                            variant='outline'
+                            color='#2DB100'
+                            borderColor='#2DB100'
+                            size='sm'
+                            width={isPortable ? '70px' : 'auto'}
+                        >
                             Готовить
                         </Button>
                     </Card>
@@ -134,21 +155,28 @@ const Desserts = () => {
                         direction='row'
                         justifyContent='space-between'
                         width='100%'
-                        padding='14px 24px'
+                        py={isPortable ? '10px' : '14px'}
+                        px={isPortable ? '12px' : '24px'}
                     >
-                        <Flex flex={1} gap='12px'>
+                        <Flex flex={1} gap={isPortable ? '8px' : '12px'}>
                             <Image src={vegan} alt='' />
-                            <Heading
+                            <Text
                                 noOfLines={1}
                                 as='h3'
-                                fontSize='20px'
+                                fontSize={isPortable ? '18px' : '20px'}
                                 lineHeight='28px'
                                 fontWeight={500}
                             >
                                 Воздушное банановое печенье на сковороде
-                            </Heading>
+                            </Text>
                         </Flex>
-                        <Button variant='outline' color='#2DB100' borderColor='#2DB100' size='sm'>
+                        <Button
+                            variant='outline'
+                            color='#2DB100'
+                            borderColor='#2DB100'
+                            size='sm'
+                            width={isPortable ? '70px' : 'auto'}
+                        >
                             Готовить
                         </Button>
                     </Card>

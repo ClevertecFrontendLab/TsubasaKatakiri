@@ -8,6 +8,7 @@ import VeganCard from '../vegan-card/vegan-card';
 const VeganCuisine = () => {
     const [isWideDesktop] = useMediaQuery('(min-width: 1441px)');
     const [isMobile] = useMediaQuery('(max-width: 767px)');
+    const [isPortable] = useMediaQuery('(max-width: 991px)');
 
     return (
         <Flex
@@ -16,7 +17,7 @@ const VeganCuisine = () => {
             gap='24px'
             width='100%'
             mb='40px'
-            px='24px'
+            px={isMobile ? '16px' : isPortable ? '20px' : '24px'}
         >
             <Flex
                 flexDirection={isMobile ? 'column' : 'row'}
@@ -33,7 +34,13 @@ const VeganCuisine = () => {
                 >
                     Веганская кухня
                 </Heading>
-                <Text width='100%' maxWidth='668px' color='#000000A3'>
+                <Text
+                    width='100%'
+                    maxWidth='668px'
+                    fontSize={isPortable ? '14px' : '16px'}
+                    lineHeight={isPortable ? '20px' : '24px'}
+                    color='#000000A3'
+                >
                     Интересны не только убеждённым вегетарианцам, но и тем, кто хочет попробовать
                     вегетарианскую диету и готовить вкусные вегетарианские блюда.
                 </Text>
@@ -41,7 +48,7 @@ const VeganCuisine = () => {
             <Flex
                 flexDirection={isMobile ? 'column' : 'row'}
                 alignItems='flex-start'
-                gap='24px'
+                gap={isPortable ? '16px' : '24px'}
                 width='100%'
             >
                 <Flex
@@ -53,7 +60,7 @@ const VeganCuisine = () => {
                               : 'calc(((100% - 24px) / 3) * 2)'
                     }`}
                     flexDirection={isMobile ? 'column' : 'row'}
-                    gap='24px'
+                    gap={isPortable ? '16px' : '24px'}
                 >
                     <VeganCard
                         name='Картошка, тушенная с болгарским перцем и фасолью в томатном соусе'
@@ -82,27 +89,34 @@ const VeganCuisine = () => {
                     }`}
                     flexDirection='column'
                     alignItems='center'
-                    gap='12px'
+                    gap={isMobile ? '12px' : isPortable ? '6px' : '12px'}
                 >
                     <Card
                         direction='row'
                         justifyContent='space-between'
                         width='100%'
-                        padding='14px 24px'
+                        py={isPortable ? '10px' : '14px'}
+                        px={isPortable ? '12px' : '24px'}
                     >
-                        <Flex flex={1} gap='12px'>
+                        <Flex flex={1} gap={isPortable ? '8px' : '12px'}>
                             <Image src={second} alt='' />
-                            <Heading
+                            <Text
                                 noOfLines={1}
                                 as='h3'
-                                fontSize='20px'
+                                fontSize={isPortable ? '18px' : '20px'}
                                 lineHeight='28px'
                                 fontWeight={500}
                             >
                                 Стейк для вегетарианцев
-                            </Heading>
+                            </Text>
                         </Flex>
-                        <Button variant='outline' color='#2DB100' borderColor='#2DB100' size='sm'>
+                        <Button
+                            variant='outline'
+                            color='#2DB100'
+                            borderColor='#2DB100'
+                            size='sm'
+                            width={isPortable ? '70px' : 'auto'}
+                        >
                             Готовить
                         </Button>
                     </Card>
@@ -110,21 +124,28 @@ const VeganCuisine = () => {
                         direction='row'
                         justifyContent='space-between'
                         width='100%'
-                        padding='14px 24px'
+                        py={isPortable ? '10px' : '14px'}
+                        px={isPortable ? '12px' : '24px'}
                     >
-                        <Flex flex={1} gap='12px'>
+                        <Flex flex={1} gap={isPortable ? '8px' : '12px'}>
                             <Image src={second} alt='' />
-                            <Heading
+                            <Text
                                 noOfLines={1}
                                 as='h3'
-                                fontSize='20px'
+                                fontSize={isPortable ? '18px' : '20px'}
                                 lineHeight='28px'
                                 fontWeight={500}
                             >
                                 Котлеты из гречки и фасоли
-                            </Heading>
+                            </Text>
                         </Flex>
-                        <Button variant='outline' color='#2DB100' borderColor='#2DB100' size='sm'>
+                        <Button
+                            variant='outline'
+                            color='#2DB100'
+                            borderColor='#2DB100'
+                            size='sm'
+                            width={isPortable ? '70px' : 'auto'}
+                        >
                             Готовить
                         </Button>
                     </Card>
@@ -132,21 +153,28 @@ const VeganCuisine = () => {
                         direction='row'
                         justifyContent='space-between'
                         width='100%'
-                        padding='14px 24px'
+                        py={isPortable ? '10px' : '14px'}
+                        px={isPortable ? '12px' : '24px'}
                     >
-                        <Flex flex={1} gap='12px'>
+                        <Flex flex={1} gap={isPortable ? '8px' : '12px'}>
                             <Image src={first} alt='' />
-                            <Heading
+                            <Text
                                 noOfLines={1}
                                 as='h3'
-                                fontSize='20px'
+                                fontSize={isPortable ? '18px' : '20px'}
                                 lineHeight='28px'
                                 fontWeight={500}
                             >
                                 Сырный суп с лапшой и брокколи
-                            </Heading>
+                            </Text>
                         </Flex>
-                        <Button variant='outline' color='#2DB100' borderColor='#2DB100' size='sm'>
+                        <Button
+                            variant='outline'
+                            color='#2DB100'
+                            borderColor='#2DB100'
+                            size='sm'
+                            width={isPortable ? '70px' : 'auto'}
+                        >
                             Готовить
                         </Button>
                     </Card>

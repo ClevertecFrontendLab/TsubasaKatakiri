@@ -68,6 +68,7 @@ const SearchBox = ({ heading, text }: Props) => {
                             placeholder='Название или ингредиент...'
                             borderColor='blackAlpha.600'
                             _placeholder={{ color: '#134B00' }}
+                            borderRadius={isMobile ? '4px' : '6px'}
                         />
                         <InputRightElement height={`${isDesktop ? '48px' : '32px'}`}>
                             <SearchIcon />
