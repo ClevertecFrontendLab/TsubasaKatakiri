@@ -15,34 +15,40 @@ import {
     Text,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useSearchParams } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 import { AccordionData } from './accordion-data';
 
 const Aside = () => {
     const navigate = useNavigate();
     const { pathname } = useLocation();
-    const [searchParams] = useSearchParams();
-    const paramSubcategoryDefinition = searchParams.get('subcategory');
+    const pathCategory = decodeURI(pathname)
+        .split('/')
+        .filter((item) => item !== '')[0];
+    const pathSubcategory = decodeURI(pathname)
+        .split('/')
+        .filter((item) => item !== '')[1];
     const [itemIndex, setItemIndex] = useState<number | number[]>(-1);
     const [subitemIndex, setSubitemIndex] = useState<number | number[]>(-1);
 
     useEffect(() => {
-        const index = AccordionData.findIndex((item) => item.href === pathname);
+        const index = AccordionData.findIndex((item) => item.href === `/${pathCategory}`);
         itemIndex === -1 ? setItemIndex(index) : setItemIndex(-1);
-    }, [pathname]);
+    }, [pathCategory]);
 
     useEffect(() => {
-        if (!Array.isArray(itemIndex) && itemIndex !== -1) {
-            const subcategoryIndex = AccordionData[itemIndex].menu.findIndex(
-                (item) => item === paramSubcategoryDefinition,
-            );
-            subcategoryIndex !== -1 ? setSubitemIndex(subcategoryIndex) : setSubitemIndex(-1);
+        if (pathSubcategory) {
+            if (!Array.isArray(itemIndex) && itemIndex !== -1) {
+                const subcategoryIndex = AccordionData[itemIndex].menu.findIndex(
+                    (item) => item === pathSubcategory,
+                );
+                subcategoryIndex !== -1 ? setSubitemIndex(subcategoryIndex) : setSubitemIndex(-1);
+            }
         }
-    }, [itemIndex, paramSubcategoryDefinition]);
+    }, [itemIndex, pathSubcategory]);
 
     const handleNavigate = (href: string, subcategory?: string): void => {
-        const url = `${href}${subcategory ? `?subcategory=${subcategory}` : ''}`;
+        const url = `${href}${subcategory ? `/${subcategory}` : ''}`;
         navigate(url);
     };
 

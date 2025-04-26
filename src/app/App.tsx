@@ -10,8 +10,11 @@ function App() {
 
     return (
         <Routes>
-            <Route path='/' element={<MainPage />} />
-            <Route path='/vegan' element={<VeganPage />} />
+            <Route index element={<MainPage />} />
+            <Route path='vegan'>
+                <Route index element={<VeganPage />} />
+                <Route path=':subcategory' element={<VeganPage />} />
+            </Route>
             <Route path='/juiciest' element={<JuiciestPage />} />
         </Routes>
     );

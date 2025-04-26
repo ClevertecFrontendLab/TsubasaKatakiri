@@ -1,32 +1,30 @@
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Text } from '@chakra-ui/react';
 import { ReactElement } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router';
+import { Link, useLocation } from 'react-router';
 
 import { breadcrumbsPageData } from './breadcrumbs-data';
 
 const Breadcrumbs = () => {
     const location = useLocation();
-    const [searchParams] = useSearchParams();
     const items: ReactElement[] = [];
 
-    const pathName = location.pathname;
-    const pathNameDefinition = breadcrumbsPageData.find((item) => item.route === pathName);
-    if (pathNameDefinition) {
+    const pathName = decodeURI(location.pathname);
+    const pathElements: string[] = pathName.split('/').filter((item) => item !== '');
+    pathElements.forEach((item, index) => {
+        const fullPath = `/${pathElements.slice(0, index + 1).join('/')}`;
+        let pathItem;
+        const pageDataItem = breadcrumbsPageData.find((item) => item.route === fullPath);
+        if (pageDataItem) pathItem = pageDataItem.name;
+        else pathItem = item;
         items.push(
-            <BreadcrumbItem key={pathNameDefinition.route}>
-                <Text>{pathNameDefinition.name}</Text>
+            <BreadcrumbItem key={pathItem}>
+                <BreadcrumbLink as={Link} to={fullPath}>
+                    <Text>{pathItem}</Text>
+                </BreadcrumbLink>
             </BreadcrumbItem>,
         );
-    }
-    const paramSubcategoryDefinition = searchParams.get('subcategory');
-    if (paramSubcategoryDefinition) {
-        items.push(
-            <BreadcrumbItem key={paramSubcategoryDefinition}>
-                <Text>{paramSubcategoryDefinition}</Text>
-            </BreadcrumbItem>,
-        );
-    }
+    });
 
     return (
         <Breadcrumb flex={1} spacing='8px' separator={<ChevronRightIcon />}>

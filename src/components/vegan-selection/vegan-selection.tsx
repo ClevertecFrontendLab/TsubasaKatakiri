@@ -1,6 +1,6 @@
 import { Box, Tab, TabList, TabPanels, Tabs, Text, useMediaQuery } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 import { veganSelectionData } from './selection-data';
 import VeganTab from './vegan-tab';
@@ -9,22 +9,22 @@ const VeganSelection = () => {
     const navigate = useNavigate();
     const [isPortable] = useMediaQuery('(max-width: 991px)');
     const [isMobile] = useMediaQuery('(max-width: 767px)');
-    const [searchParams] = useSearchParams();
-    const paramSubcategoryDefinition = searchParams.get('subcategory');
+    const params = useParams();
+    const subcategory = params.subcategory;
     const [subitemIndex, setSubitemIndex] = useState<number>(0);
 
     useEffect(() => {
-        const index = veganSelectionData.findIndex((item) => item === paramSubcategoryDefinition);
+        const index = veganSelectionData.findIndex((item) => item === subcategory);
         if (index !== -1) setSubitemIndex(index);
         else {
             setSubitemIndex(0);
-            navigate('/vegan?subcategory=Закуски');
+            navigate('/vegan/Закуски');
         }
-    }, [veganSelectionData, paramSubcategoryDefinition]);
+    }, [veganSelectionData, subcategory]);
 
     const handleNavigate = (number: number): void => {
         const subcategory = veganSelectionData[number];
-        const url = `/vegan${subcategory ? `?subcategory=${subcategory}` : ''}`;
+        const url = `/vegan${subcategory ? `/${subcategory}` : ''}`;
         navigate(url);
     };
 
