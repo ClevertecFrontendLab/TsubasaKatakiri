@@ -20,8 +20,6 @@ const Header = () => {
         else setIsBurgerOpen(true);
     };
 
-    console.log(isBurgerOpen);
-
     return (
         <Fragment>
             <Flex

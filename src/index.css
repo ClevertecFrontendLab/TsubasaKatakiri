@@ -75,6 +75,32 @@ button:focus-visible {
     flex-wrap: wrap;
 }
 
+.swiper-button-prev {
+    display: none !important;
+}
+
+.swiper-button-next {
+    display: none !important;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1441px) {
+    .swiper-slide {
+        width: 279px !important;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .swiper-slide {
+        width: 158px !important;
+    }
+}
+
+/* @media screen and (min-width: 992px) and (max-width: 1441px){
+    .swiper-slide{
+        margin-right: 0 !important;
+    }
+} */
+
 @media (prefers-color-scheme: light) {
     :root {
         color: #213547;

@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 
 import mockAvatar from '~/assets/recipes/mockAvatar.jpg';
 import MainLayout from '~/components/layout/main-layout';
+import NewRecipes from '~/components/new-recipes/new-recipes';
 import RecipeAuthor from '~/components/recipe-author/recipe-author';
 import RecipeHeader from '~/components/recipe-header/recipe-header';
 import RecipeIngredients from '~/components/recipe-ingredients/recipe-ingredients';
@@ -54,7 +55,7 @@ const RecipePage = () => {
                         />
                     </Flex>
                 )}
-                Recipe page
+                <NewRecipes />
             </MainLayout>
         </Fragment>
     );

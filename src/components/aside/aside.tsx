@@ -4,7 +4,7 @@ import { Button, Flex, Spacer, Text } from '@chakra-ui/react';
 import AccordionMenu from './accordion';
 
 const Aside = () => {
-    console.log('cock');
+    console.log('');
 
     return (
         <Flex

@@ -14,6 +14,8 @@ const Sidebar = () => (
         top='80px'
         height='calc(100vh - 80px)'
         right={0}
+        zIndex={10}
+        bgColor='#FFFFFF'
     >
         <Flex direction='column' alignItems='center' py='16px' gap='16px'>
             <Flex gap='10px' py='8px' height='40px' alignItems='center'>

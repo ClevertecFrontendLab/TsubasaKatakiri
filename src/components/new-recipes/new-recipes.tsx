@@ -1,21 +1,45 @@
+import 'swiper/css';
+import 'swiper/css/navigation';
+
 import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { Flex, Heading, IconButton, useMediaQuery } from '@chakra-ui/react';
+import { ReactElement, useState } from 'react';
+import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 
-import second from '~/assets/bay-leaf.svg';
-import third from '~/assets/bread.svg';
-import fourth from '~/assets/eggplant.svg';
-import img1 from '~/assets/newRecipes/image.png';
-import img2 from '~/assets/newRecipes/image1.png';
-import img3 from '~/assets/newRecipes/image2.png';
-import img4 from '~/assets/newRecipes/image3.png';
-import first from '~/assets/pot.svg';
+import { recipeMockData } from '~/pages/recipe-mock-data';
 
+import { AccordionData } from '../aside/accordion-data';
 import NewRecipeCard from '../new-recipe-card/new-recipe-card';
 
 const NewRecipes = () => {
     const [isWideDesktop] = useMediaQuery('(min-width: 1441px)');
     const [isPortable] = useMediaQuery('(max-width: 991px)');
     const [isMobile] = useMediaQuery('(max-width: 767px)');
+    const swiperSlides: ReactElement[] = [];
+    const [swiper, setSwiper] = useState<SwiperClass | null>(null);
+
+    recipeMockData.forEach((item) => {
+        const tagContent = AccordionData.find((data) => data.href.slice(1) === item.category[0]);
+        if (tagContent) {
+            swiperSlides.push(
+                <SwiperSlide key={item.id}>
+                    <NewRecipeCard
+                        id={item.id}
+                        categoryName={item.category[0]}
+                        subcategoryName={item.subcategory[0]}
+                        cardImage={item.image}
+                        name={item.title}
+                        description={item.description}
+                        categoryIcon={tagContent.icon}
+                        category={tagContent.category}
+                        bookmarks={item.bookmarks}
+                        likes={item.likes}
+                    />
+                </SwiperSlide>,
+            );
+        }
+    });
 
     return (
         <Flex
@@ -58,6 +82,7 @@ const NewRecipes = () => {
                         color='#FFFFD3'
                         size='lg'
                         aria-label=''
+                        onClick={() => swiper?.slidePrev()}
                     />
                 )}
                 {!isPortable && (
@@ -73,52 +98,43 @@ const NewRecipes = () => {
                         color='#FFFFD3'
                         size='lg'
                         aria-label=''
+                        onClick={() => swiper?.slideNext()}
                     />
                 )}
-                <Flex
-                    flexDirection='row'
-                    alignItems='flex-start'
-                    gap={isPortable ? '12px' : '24px'}
-                >
-                    <NewRecipeCard
-                        cardImage={img1}
-                        name='Солянка с грибами'
-                        description='Как раз после праздников, когда мясные продукты еще остались, но никто их уже не хочет, время варить солянку.'
-                        categoryIcon={first}
-                        category='Первые блюда'
-                        bookmarks={1}
-                    />
-                    <NewRecipeCard
-                        cardImage={img2}
-                        name='Капустные котлеты'
-                        description='Капустные котлеты по этому рецепту получаются необычайно пышными и  невероятно вкусными. Мягкий вкус и лёгкая пряная нотка наверняка помогут сделать эти чудесные котлеты из капусты одним из ваших любимых овощных  блюд.'
-                        categoryIcon={second}
-                        category='Веганские блюда'
-                        likes={1}
-                        bookmarks={2}
-                    />
-                    <NewRecipeCard
-                        cardImage={img3}
-                        name='Оладьи на кефире "Пышные"'
-                        description='Очень вкусные и нежные оладьи на кефире. Настоятельно рекомендую пышные кефирные оладьи на завтрак.'
-                        categoryIcon={third}
-                        category='Десерты, выпечка'
-                        likes={1}
-                    />
-                    <NewRecipeCard
-                        cardImage={img4}
-                        name='Салат "Здоровье"'
-                        description='Сельдерей очень полезен для здоровья, пора набираться витаминов. Не  салат, а сплошное удовольствие:) Вкусный, необычный, а главное быстрый.'
-                        categoryIcon={fourth}
-                        category='Салаты'
-                    />
-                    <NewRecipeCard
-                        cardImage={img4}
-                        name='Салат "Здоровье"'
-                        description='Сельдерей очень полезен для здоровья, пора набираться витаминов. Не  салат, а сплошное удовольствие:) Вкусный, необычный, а главное быстрый.'
-                        categoryIcon={fourth}
-                        category='Салаты'
-                    />
+                <Flex width='calc(100% - 16px)' maxWidth='1336px' position='relative'>
+                    <Swiper
+                        modules={[Navigation]}
+                        loop={true}
+                        navigation
+                        spaceBetween={isPortable ? 16 : 24}
+                        breakpoints={{
+                            320: {
+                                slidesPerView: 2,
+                                spaceBetween: 12,
+                            },
+                            768: {
+                                slidesPerView: 4,
+                                spaceBetween: 12,
+                            },
+                            992: {
+                                slidesPerView: 3,
+                                spaceBetween: 24,
+                            },
+                            1441: {
+                                slidesPerView: 4,
+                                spaceBetween: 24,
+                            },
+                            1920: {
+                                slidesPerView: 4,
+                                spaceBetween: 24,
+                            },
+                        }}
+                        // slidesPerView={'auto'}
+                        // slidesPerView={isWideDesktop ? 4 : isMobile ? 2 : isPortable ? 4 : 3}
+                        onSwiper={(swiper) => setSwiper(swiper)}
+                    >
+                        {swiperSlides}
+                    </Swiper>
                 </Flex>
             </Flex>
         </Flex>

@@ -18,8 +18,6 @@ interface Props {
 }
 
 const BurgerMenu = ({ isOpen, setIsOpen }: Props) => {
-    console.log('drawer');
-
     const onClose = () => {
         setIsOpen(false);
     };
