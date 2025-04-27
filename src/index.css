@@ -71,6 +71,10 @@ button:focus-visible {
     background-color: #00000029;
 }
 
+.chakra-breadcrumb__list {
+    flex-wrap: wrap;
+}
+
 @media (prefers-color-scheme: light) {
     :root {
         color: #213547;
