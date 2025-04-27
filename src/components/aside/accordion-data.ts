@@ -34,13 +34,13 @@ export const AccordionData = [
     },
     {
         category: 'Первые блюда',
-        href: '/first-courses',
+        href: '/first-dish',
         icon: first,
         menu: ['Мясные супы', 'Овощные супы', 'Бульоны', 'Холодные супы', 'Диетические супы'],
     },
     {
         category: 'Вторые блюда',
-        href: '/second-courses',
+        href: '/second-dish',
         icon: second,
         menu: [
             'Мясные',
