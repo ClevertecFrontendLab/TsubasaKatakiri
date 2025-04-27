@@ -1,4 +1,4 @@
-import { Avatar, Button, Flex, Image, Text } from '@chakra-ui/react';
+import { Avatar, Button, Flex, Image, Text, useMediaQuery } from '@chakra-ui/react';
 
 import subscribe from '~/assets/recipes/left-icon-subscribe.svg';
 import Users from '~/assets/sidebar/BsPeopleFill.svg';
@@ -11,16 +11,18 @@ interface Props {
 }
 
 const RecipeAuthor = ({ name, id, subscribers, avatar }: Props) => {
-    console.log(name);
+    const [isMobile] = useMediaQuery('(max-width: 767px)');
+    const [isPortable] = useMediaQuery('(max-width: 991px)');
+    const [isWideDesktop] = useMediaQuery('(min-width: 1441px)');
 
     return (
         <Flex
             gap='16px'
             width='100%'
-            maxWidth='668px'
+            maxWidth={isWideDesktop ? '668px' : isMobile ? '100%' : isPortable ? '604px' : '578px'}
             bgColor='#C4FF61'
             borderRadius='8px'
-            padding='24px'
+            padding={isMobile ? '12px' : '24px'}
             justifyContent='center'
         >
             <Avatar src={avatar} name={name} width='96px' height='96px' />
@@ -33,7 +35,7 @@ const RecipeAuthor = ({ name, id, subscribers, avatar }: Props) => {
             >
                 <Flex
                     width='100%'
-                    flexDir='row'
+                    flexDir={isMobile ? 'column-reverse' : 'row'}
                     alignItems='flex-start'
                     justifyContent='space-between'
                 >
@@ -43,16 +45,27 @@ const RecipeAuthor = ({ name, id, subscribers, avatar }: Props) => {
                         flexDir='column'
                         alignItems='flex-start'
                         justifyContent='flex-start'
-                        gap='4px'
+                        gap={isMobile ? 0 : '4px'}
                     >
-                        <Text fontSize='24px' lineHeight='32px' fontWeight={700} margin={0}>
+                        <Text
+                            fontSize={isMobile ? '18px' : '24px'}
+                            lineHeight={isMobile ? '28px' : '32px'}
+                            fontWeight={700}
+                            margin={0}
+                        >
                             {name}
                         </Text>
                         <Text fontSize='14px' lineHeight='20px' color='#000000A3' margin={0}>
                             {id}
                         </Text>
                     </Flex>
-                    <Text fontSize='14px' lineHeight='20px' fontWeight={400} margin={0}>
+                    <Text
+                        fontSize='14px'
+                        lineHeight='20px'
+                        fontWeight={400}
+                        margin={0}
+                        alignSelf={isMobile ? 'flex-end' : 'initial'}
+                    >
                         Автор рецепта
                     </Text>
                 </Flex>

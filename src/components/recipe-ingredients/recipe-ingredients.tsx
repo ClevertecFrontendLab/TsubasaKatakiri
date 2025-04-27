@@ -12,6 +12,7 @@ import {
     Th,
     Thead,
     Tr,
+    useMediaQuery,
 } from '@chakra-ui/react';
 import { ReactElement, useEffect, useState } from 'react';
 
@@ -22,6 +23,10 @@ interface Props {
 }
 
 const RecipeIngredients = ({ recipe }: Props) => {
+    const [isMobile] = useMediaQuery('(max-width: 767px)');
+    const [isPortable] = useMediaQuery('(max-width: 991px)');
+    const [isWideDesktop] = useMediaQuery('(min-width: 1441px)');
+
     const [ingredients, setIngredients] = useState<Ingredient[]>(recipe.ingredients);
     const [portions, setPortions] = useState<number>(1);
     const [ingredientsRows, setIngredientsRows] = useState<ReactElement[]>([]);
@@ -64,7 +69,10 @@ const RecipeIngredients = ({ recipe }: Props) => {
     };
 
     return (
-        <TableContainer width='100%' maxWidth='668px'>
+        <TableContainer
+            width='100%'
+            maxWidth={isWideDesktop ? '668px' : isMobile ? '100%' : isPortable ? '604px' : '578px'}
+        >
             <Table variant='simple'>
                 <Thead>
                     <Tr>
@@ -86,6 +94,7 @@ const RecipeIngredients = ({ recipe }: Props) => {
                             alignItems='center'
                             justifyContent='flex-end'
                             gap='16px'
+                            px={0}
                         >
                             <Text
                                 color='#2DB100'

@@ -111,17 +111,17 @@ export const recipeMockData: Recipe[] = [
             {
                 stepNumber: 1,
                 description: 'Приготовить соусы.',
-                image: 'url',
+                image: '/src/assets/recipes/img1.jpg',
             },
             {
                 stepNumber: 2,
                 description: 'Сложить слои лазаньи.',
-                image: 'url',
+                image: '/src/assets/recipes/img2.jpg',
             },
             {
                 stepNumber: 3,
                 description: 'Запекать 30 минут.',
-                image: 'url',
+                image: '/src/assets/recipes/img3.jpg',
             },
         ],
     },

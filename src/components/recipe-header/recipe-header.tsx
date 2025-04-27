@@ -1,4 +1,4 @@
-import { Button, Flex, Image, Tag, TagLabel, Text } from '@chakra-ui/react';
+import { Button, Flex, Image, Tag, TagLabel, Text, useMediaQuery } from '@chakra-ui/react';
 import { ReactElement } from 'react';
 
 import Bookmark from '~/assets/sidebar/BsBookmarkHeart.svg';
@@ -13,6 +13,10 @@ interface Props {
 }
 
 const RecipeHeader = ({ recipe }: Props) => {
+    const [isMobile] = useMediaQuery('(max-width: 767px)');
+    const [isPortable] = useMediaQuery('(max-width: 991px)');
+    const [isWideDesktop] = useMediaQuery('(min-width: 1441px)');
+
     const tags: ReactElement[] = [];
 
     recipe.category.forEach((item) => {
@@ -30,13 +34,19 @@ const RecipeHeader = ({ recipe }: Props) => {
     return (
         <Flex
             width='100%'
-            height='410px'
-            flexDir='row'
+            height={isMobile ? '100%' : isPortable ? '224px' : '410px'}
+            flexDir={isMobile ? 'column' : 'row'}
             alignItems='flex-start'
             justifyContent='space-between'
             gap='24px'
         >
-            <Flex width='100%' height='100%' maxWidth='553px'>
+            <Flex
+                width='100%'
+                height='100%'
+                maxWidth={
+                    isWideDesktop ? '553px' : isMobile ? '100%' : isPortable ? '232px' : '353px'
+                }
+            >
                 <Image
                     src={recipe.image}
                     alt={recipe.title}
@@ -105,16 +115,28 @@ const RecipeHeader = ({ recipe }: Props) => {
                     direction='column'
                     alignItems='flex-start'
                     justifyContent='space-between'
-                    gap='24px'
+                    gap={isPortable ? '16px' : '24px'}
+                    pb={isMobile ? '24px' : 0}
                 >
-                    <Text fontWeight={700} fontSize='48px' lineHeight='48px'>
+                    <Text
+                        fontWeight={700}
+                        fontSize={isPortable ? '24px' : '48px'}
+                        lineHeight={isPortable ? '32px' : '48px'}
+                    >
                         {recipe.title}
                     </Text>
                     <Text fontSize='14px' lineHeight='20px'>
                         {recipe.description}
                     </Text>
                 </Flex>
-                <Flex alignItems='flex-end' justifyContent='space-between' mt='auto' width='100%'>
+                <Flex
+                    direction={isMobile ? 'column' : 'row'}
+                    alignItems={isMobile ? 'flex-start' : 'flex-end'}
+                    justifyContent='space-between'
+                    mt='auto'
+                    width='100%'
+                    gap='12px'
+                >
                     <Tag bgColor='#0000000F' color='#000000' fontWeight={400}>
                         <Image src={clock} alt='' mr='8px' />
                         <TagLabel>{recipe.time}</TagLabel>
@@ -124,7 +146,7 @@ const RecipeHeader = ({ recipe }: Props) => {
                             leftIcon={<Image src={Smile} alt='' />}
                             variant='outline'
                             borderColor='#0000007A'
-                            size='lg'
+                            size={isWideDesktop ? 'lg' : isPortable ? 'xs' : 'sm'}
                         >
                             Оценить рецепт
                         </Button>
@@ -133,7 +155,7 @@ const RecipeHeader = ({ recipe }: Props) => {
                             variant='solid'
                             bgColor='#B1FF2E'
                             color='#000000'
-                            size='lg'
+                            size={isWideDesktop ? 'lg' : isPortable ? 'xs' : 'sm'}
                         >
                             Сохранить в закладки
                         </Button>

@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex, useMediaQuery } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { Fragment } from 'react/jsx-runtime';
 import { useParams } from 'react-router';
@@ -15,6 +15,9 @@ import { Recipe } from '~/types/recipe';
 import { recipeMockData } from './recipe-mock-data';
 
 const RecipePage = () => {
+    const [isMobile] = useMediaQuery('(max-width: 767px)');
+    const [isPortable] = useMediaQuery('(max-width: 991px)');
+
     const params = useParams();
     const recipeId = params.id;
     const [recipe, setRecipe] = useState<Recipe | undefined>();
@@ -33,7 +36,8 @@ const RecipePage = () => {
                     <Flex
                         width='100%'
                         max-width='1360px'
-                        p='24px'
+                        px={isMobile ? '16px' : isPortable ? '20px' : '24px'}
+                        py={isPortable ? '0' : '24px'}
                         direction='column'
                         alignItems='center'
                         gap='40px'
