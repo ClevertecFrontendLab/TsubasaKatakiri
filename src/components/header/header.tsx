@@ -44,7 +44,50 @@ const Header = () => {
                 )}
                 {isDesktop && <Spacer width='100%' maxWidth='128px' />}
                 {isDesktop && <Breadcrumbs />}
-                {!isDesktop ? (
+
+                <Flex direction='row' alignItems='center' gap='16px'>
+                    {!isBurgerOpen && !isDesktop && <LikesData />}
+                    <Button
+                        variant='ghost'
+                        width='48px'
+                        height='48px'
+                        px={0}
+                        onClick={handleControlBurger}
+                        data-test-id={isBurgerOpen ? 'close-icon' : 'hamburger-icon'}
+                        visibility={isDesktop ? 'hidden' : 'visible'}
+                    >
+                        <Flex direction='column' gap='3px'>
+                            <Box
+                                width='16px'
+                                height='2px'
+                                bgColor='#000000'
+                                transform={
+                                    isBurgerOpen ? 'rotateZ(-45deg) translateY(3.5px)' : 'unset'
+                                }
+                                transition='all 0.25s ease'
+                            />
+                            {!isBurgerOpen && (
+                                <Box
+                                    width='16px'
+                                    height='2px'
+                                    bgColor='#000000'
+                                    transition='all 0.25s ease'
+                                />
+                            )}
+                            <Box
+                                width='16px'
+                                height='2px'
+                                bgColor='#000000'
+                                transform={
+                                    isBurgerOpen ? 'rotateZ(45deg) translateY(-3.5px)' : 'unset'
+                                }
+                                transition='all 0.25s ease'
+                            />
+                        </Flex>
+                    </Button>
+                </Flex>
+                {isDesktop && <UserBox />}
+                {/* {!isDesktop ? (
                     <Flex direction='row' alignItems='center' gap='16px'>
                         {!isBurgerOpen && <LikesData />}
                         <Button
@@ -53,6 +96,7 @@ const Header = () => {
                             height='48px'
                             px={0}
                             onClick={handleControlBurger}
+                            data-test-id={isBurgerOpen ? 'close-icon' : 'hamburger-icon'}
                         >
                             <Flex direction='column' gap='3px'>
                                 <Box
@@ -86,7 +130,7 @@ const Header = () => {
                     </Flex>
                 ) : (
                     <UserBox />
-                )}
+                )} */}
             </Flex>
             <BurgerMenu isOpen={isBurgerOpen} setIsOpen={setIsBurgerOpen} />
         </Fragment>

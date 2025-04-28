@@ -17,4 +17,15 @@ export const chakraTheme = extendTheme({
         heading: `'Inter', sans-serif`,
         body: `'Inter', sans-serif`,
     },
+    components: {
+        Switch: {
+            baseStyle: {
+                track: {
+                    _checked: {
+                        bg: '#B1FF2E',
+                    },
+                },
+            },
+        },
+    },
 });

@@ -19,11 +19,11 @@ const NewRecipes = () => {
     const swiperSlides: ReactElement[] = [];
     const [swiper, setSwiper] = useState<SwiperClass | null>(null);
 
-    recipeMockData.forEach((item) => {
+    recipeMockData.forEach((item, index) => {
         const tagContent = AccordionData.find((data) => data.href.slice(1) === item.category[0]);
         if (tagContent) {
             swiperSlides.push(
-                <SwiperSlide key={item.id}>
+                <SwiperSlide key={item.id} data-test-id={`carousel-card-${index}`}>
                     <NewRecipeCard
                         id={item.id}
                         categoryName={item.category[0]}
@@ -69,40 +69,41 @@ const NewRecipes = () => {
                 pr={isWideDesktop ? '24px' : 0}
                 position='relative'
             >
-                {!isPortable && (
-                    <IconButton
-                        position='absolute'
-                        left='16px'
-                        top='50%'
-                        transform='translateY(-50%)'
-                        zIndex={3}
-                        icon={<ArrowBackIcon />}
-                        variant='solid'
-                        backgroundColor='#000000'
-                        color='#FFFFD3'
-                        size='lg'
-                        aria-label=''
-                        onClick={() => swiper?.slidePrev()}
-                    />
-                )}
-                {!isPortable && (
-                    <IconButton
-                        position='absolute'
-                        right='16px'
-                        top='50%'
-                        transform='translateY(-50%)'
-                        zIndex={3}
-                        icon={<ArrowForwardIcon />}
-                        variant='solid'
-                        backgroundColor='#000000'
-                        color='#FFFFD3'
-                        size='lg'
-                        aria-label=''
-                        onClick={() => swiper?.slideNext()}
-                    />
-                )}
+                <IconButton
+                    data-test-id='carousel-back'
+                    position='absolute'
+                    left='16px'
+                    top='50%'
+                    transform='translateY(-50%)'
+                    zIndex={3}
+                    icon={<ArrowBackIcon />}
+                    variant='solid'
+                    backgroundColor='#000000'
+                    color='#FFFFD3'
+                    size='lg'
+                    aria-label=''
+                    visibility={isPortable ? 'hidden' : 'visible'}
+                    onClick={() => swiper?.slidePrev()}
+                />
+                <IconButton
+                    data-test-id='carousel-forward'
+                    position='absolute'
+                    right='16px'
+                    top='50%'
+                    transform='translateY(-50%)'
+                    zIndex={3}
+                    icon={<ArrowForwardIcon />}
+                    variant='solid'
+                    backgroundColor='#000000'
+                    color='#FFFFD3'
+                    size='lg'
+                    aria-label=''
+                    visibility={isPortable ? 'hidden' : 'visible'}
+                    onClick={() => swiper?.slideNext()}
+                />
                 <Flex width='calc(100% - 16px)' maxWidth='1336px' position='relative'>
                     <Swiper
+                        data-test-id='carousel'
                         modules={[Navigation]}
                         loop={true}
                         navigation

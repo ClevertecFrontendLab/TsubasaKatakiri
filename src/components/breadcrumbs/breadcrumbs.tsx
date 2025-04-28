@@ -37,6 +37,7 @@ const Breadcrumbs = () => {
             spacing='8px'
             separator={<ChevronRightIcon />}
             flexWrap='wrap'
+            data-test-id='breadcrumbs'
         >
             <BreadcrumbItem>
                 <BreadcrumbLink as={Link} to='/'>

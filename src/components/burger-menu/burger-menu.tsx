@@ -34,7 +34,7 @@ const BurgerMenu = ({ isOpen, setIsOpen }: Props) => {
                 borderBottomLeftRadius='12px'
                 borderBottomRightRadius='12px'
             >
-                <DrawerBody padding={0}>
+                <DrawerBody padding={0} data-test-id='nav'>
                     <Flex px='20px' py='16px' width='344px' flexWrap='wrap'>
                         <Breadcrumbs />
                     </Flex>

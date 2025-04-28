@@ -42,7 +42,7 @@ const RecipeIngredients = ({ recipe }: Props) => {
 
     useEffect(() => {
         const rows: ReactElement[] = [];
-        ingredients.forEach((item) => {
+        ingredients.forEach((item, index) => {
             rows.push(
                 <Tr key={item.title}>
                     <Td
@@ -55,7 +55,13 @@ const RecipeIngredients = ({ recipe }: Props) => {
                     >
                         {item.title}
                     </Td>
-                    <Td fontWeight={400} fontSize='14px' lineHeight='20px' textAlign='right'>
+                    <Td
+                        fontWeight={400}
+                        fontSize='14px'
+                        lineHeight='20px'
+                        textAlign='right'
+                        data-test-id={`ingredient-quantity-${index}`}
+                    >
                         {`${item.count} ${item.measureUnit}`}
                     </Td>
                 </Tr>,
@@ -113,8 +119,8 @@ const RecipeIngredients = ({ recipe }: Props) => {
                             >
                                 <NumberInputField />
                                 <NumberInputStepper>
-                                    <NumberIncrementStepper />
-                                    <NumberDecrementStepper />
+                                    <NumberIncrementStepper data-test-id='increment-stepper' />
+                                    <NumberDecrementStepper data-test-id='decrement-stepper' />
                                 </NumberInputStepper>
                             </NumberInput>
                         </Th>

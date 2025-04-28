@@ -12,6 +12,7 @@ type Props = {
 
 const MainLayout = ({ children }: Props) => {
     const [isDesktop] = useMediaQuery('(min-width: 992px)');
+    const [isNarrow] = useMediaQuery('(max-height: 767px)');
 
     return (
         <Flex
@@ -41,7 +42,7 @@ const MainLayout = ({ children }: Props) => {
                 </Flex>
                 {isDesktop && <Sidebar />}
             </Flex>
-            {!isDesktop && <Footer />}
+            {(!isDesktop || isNarrow) && <Footer />}
         </Flex>
     );
 };
